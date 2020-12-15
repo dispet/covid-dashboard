@@ -7,7 +7,7 @@ export class WordMap {
     }
 
     initMap() {
-        const mainMap = L.map(this.worldMap).setView([53.89, 27.55], 2);
+        // const mainMap = L.map(this.worldMap).setView([53.89, 27.55], 2);
         // mainMap.createPane("labels");
 
         //     const positronLabels = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png", {
