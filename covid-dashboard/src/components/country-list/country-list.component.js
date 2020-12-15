@@ -1,10 +1,8 @@
 import {CovidDashboardService, restcountries, causes, causesStr} from "../../core/index";
-import {Chart} from "./chart/index";
 
 export class CountryList {
 
   constructor() {
-    this.chart = new Chart();
     this.countriesList = document.querySelector('.country-list');
     this.searchInput = document.getElementById('search');
     this.cause = document.querySelector('.cause');
@@ -82,7 +80,6 @@ export class CountryList {
   }
 
   viewData(data) {
-    this.chart.log(data);
     this.countriesData = data;
     this.countriesDataStore = data;
     this.sortByDescend(this.sortItem);
