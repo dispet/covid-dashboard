@@ -31,12 +31,6 @@ export class Table {
     }
 
     loadTable() {
-        // this.tableData.innerHTML =
-        //   `<span>${this.currentSelect}</span>
-        //    <span>Confirmed: <span class="confirmed">${this.countriesData.totalConfirmed}</span>
-        //     <span class="new-confirmed">+ ${this.countriesData.newConfirmed}</span></span>
-        //     <span>Deaths: <span class="deaths">${this.countriesData.totalDeaths}</span> <span class="new-deaths">+ ${this.countriesData.newDeaths}</span></span>
-        //     <span>Recovered: <span class="recovered">${this.countriesData.totalRecovered}</span> <span class="new-recovered">+ ${this.countriesData.newRecovered}</span></span>`;
         this.tableData.innerHTML = `
         <div class="table">
           <div class="table__header">${this.currentSelect}</div>
