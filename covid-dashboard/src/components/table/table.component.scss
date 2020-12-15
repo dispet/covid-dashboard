@@ -1,0 +1,39 @@
+.tabs__header {
+    display: flex;
+    width: 100%;
+}
+.tabs__header_item {
+    cursor: pointer;
+    padding: 5px 10px;
+    width: 25%;
+    text-align: center;
+    transition: all 0.3s;
+    border: 1px solid #fff;
+}
+.tabs__header_item.active,
+.tabs__header_item:hover {
+    background: #bdbdbd;
+    color: #000;
+}
+.tabs__body {
+    position: relative;
+    padding: 10px;
+}
+.tabs__item {
+    display: none;
+}
+.tabs__item.active {
+    display: block;
+}
+.table {
+    font-size: 13px;
+    .table__header {
+        text-align: center;
+        padding: 3px 0;
+    }
+    .table__item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+}
