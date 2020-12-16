@@ -6,13 +6,8 @@ import { getViewTable, bodyTableView } from "./table.template";
 import { WORLD_POPULATION, CovidDashboardService } from "../../core/index";
 
 export class Table {
-  partPeoples = 100000;
 
-  constructor() {
-    this.tableContainer = document.querySelector(".table-wrapper");
-    this.currentSelect = "World";
-  }
-
+    init() {
   changeTableView(radios) {
     const tableBody = document.querySelector(".table__body");
     let checkedValue = "";
