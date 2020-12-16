@@ -1,4 +1,6 @@
 import "./table.component.scss";
+
+
 import { WORLD_POPULATION, CovidDashboardService } from "../../core/index";
 
     }
