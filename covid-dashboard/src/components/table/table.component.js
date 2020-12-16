@@ -1,6 +1,9 @@
 import "./table.component.scss";
+<<<<<<< HEAD
 import { fullWidth, createTabs } from "./utils";
 import { getViewTable } from "./table.template";
+=======
+>>>>>>> feat: add statistics per 100000
 import { WORLD_POPULATION, CovidDashboardService } from "../../core/index";
 
 // function catchState() {
