@@ -1,5 +1,5 @@
 import "./table.component.scss";
-import { CovidDashboardService } from "../../core/index";
+import { WORLD_POPULATION, CovidDashboardService } from "../../core/index";
 
 function tabs() {
     document.addEventListener("click", (e) => {
@@ -25,6 +25,8 @@ function tabs() {
 tabs();
 
 export class Table {
+    populationDivideHundred = WORLD_POPULATION / 100000;
+
     constructor() {
         this.tableData = document.querySelector(".table-data");
         this.currentSelect = "World";
@@ -68,35 +70,95 @@ export class Table {
                       </div>
                     </div>
                   </div>
-                <div class="tabs__item" data-tab="2">
-                  <div class="table__item">
-                    <div class="table__item_part">
-                      <span>Confirmed: </span>
+                  <div class="tabs__item" data-tab="2">
+                    <div class="table__item">
+                      <div class="table__item_part">
+                        <span>Confirmed: </span>
+                      </div>
+                      <div class="table__item_part">
+                        <span class="new-confirmed">+ ${this.countriesData.newConfirmed}</span>
+                      </div>
                     </div>
-                    <div class="table__item_part">
-                      <span class="new-confirmed">+ ${this.countriesData.newConfirmed}</span>
+                    <div class="table__item">
+                      <div class="table__item_part">
+                        <span>Deaths: </span>
+                      </div>
+                      <div class="table__item_part">
+                        <span class="new-deaths">+ ${this.countriesData.newDeaths}</span>
+                      </div>
+                    </div>
+                    <div class="table__item">
+                      <div class="table__item_part">
+                        <span>Recovered: </span>
+                      </div>
+                      <div class="table__item_part">
+                        <span class="new-recovered">+ ${this.countriesData.newRecovered}</span>
+                      </div>
                     </div>
                   </div>
-                  <div class="table__item">
-                    <div class="table__item_part">
-                      <span>Deaths: </span>
+                  <div class="tabs__item" data-tab="3">
+                    <div class="table__item">
+                      <div class="table__item_part">
+                        <span>Confirmed/100000: </span>
+                      </div>
+                      <div class="table__item_part">
+                        <span class="confirmed">${Math.floor(
+                            this.countriesData.totalConfirmed / this.populationDivideHundred
+                        )}</span>
+                      </div>
                     </div>
-                    <div class="table__item_part">
-                      <span class="new-deaths">+ ${this.countriesData.newDeaths}</span>
+                    <div class="table__item">
+                      <div class="table__item_part">
+                        <span>Deaths/100000: </span>
+                      </div>
+                      <div class="table__item_part">
+                        <span class="deaths">${Math.floor(
+                            this.countriesData.totalDeaths / this.populationDivideHundred
+                        )}</span>
+                      </div>
+                    </div>
+                    <div class="table__item">
+                      <div class="table__item_part">
+                        <span>Recovered/100000: </span>
+                      </div>
+                      <div class="table__item_part">
+                        <span class="recovered">${Math.floor(
+                            this.countriesData.totalRecovered / this.populationDivideHundred
+                        )}</span>
+                      </div>
                     </div>
                   </div>
-                  <div class="table__item">
-                    <div class="table__item_part">
-                      <span>Recovered: </span>
+                  <div class="tabs__item" data-tab="4">
+                    <div class="table__item">
+                      <div class="table__item_part">
+                        <span>Confirmed: </span>
+                      </div>
+                      <div class="table__item_part">
+                        <span class="new-confirmed">+ ${
+                            this.countriesData.newConfirmed / this.populationDivideHundred
+                        }</span>
+                      </div>
                     </div>
-                    <div class="table__item_part">
-                      <span class="new-recovered">+ ${this.countriesData.newRecovered}</span>
+                    <div class="table__item">
+                      <div class="table__item_part">
+                        <span>Deaths/100000: </span>
+                      </div>
+                      <div class="table__item_part">
+                        <span class="new-deaths">+ ${this.countriesData.newDeaths / this.populationDivideHundred}</span>
+                      </div>
+                    </div>
+                    <div class="table__item">
+                      <div class="table__item_part">
+                        <span>Recovered: </span>
+                      </div>
+                      <div class="table__item_part">
+                        <span class="new-recovered">+ ${
+                            this.countriesData.newRecovered / this.populationDivideHundred
+                        }</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-                </div>
-                <div class="tabs__item" data-tab="3">body 3</div>
-                <div class="tabs__item" data-tab="4">body 4</div>
               </div>
             </div>
         </div>
