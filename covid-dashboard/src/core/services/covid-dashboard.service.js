@@ -1,54 +1,54 @@
-import { SUMMARY_URL} from "../constants";
+import {SUMMARY_URL, WORLD_URL, COUNTRY_URL} from "../constants";
 
 export class CovidDashboardService {
-    static getData() {
-        return fetch(SUMMARY_URL)
-            .then((res) => this.getStatus(res))
-            .catch((err) => err);
-    }
+  static getData() {
+    return fetch(SUMMARY_URL)
+      .then((res) => this.getStatus(res))
+      .catch((err) => err);
+  }
 
-    static getStatus(res) {
-        return res?.status >= 200 && res?.status < 300 ? res?.json() : undefined;
-    }
+  static getStatus(res) {
+    return res?.status >= 200 && res?.status < 300 ? res?.json() : undefined;
+  }
 
-    static async getCountries() {
-        const data = await this.getData().then((res) => res?.Countries);
+  static async getCountries() {
+    const data = await this.getData().then((res) => res?.Countries);
 
-        return data?.map((res) => {
-            return {
-                country: res?.Country,
-                code: res?.CountryCode,
-                date: res?.Date,
-                newConfirmed: res?.NewConfirmed,
-                newDeaths: res?.NewDeaths,
-                newRecovered: res?.NewRecovered,
-                premium: res?.Premium,
-                slug: res?.Slug,
-                totalConfirmed: res?.TotalConfirmed,
-                totalDeaths: res?.TotalDeaths,
-                totalRecovered: res?.TotalRecovered
-            };
-        });
-    }
+    return data?.map((res) => {
+      return {
+        country: res?.Country,
+        code: res?.CountryCode,
+        date: res?.Date,
+        newConfirmed: res?.NewConfirmed,
+        newDeaths: res?.NewDeaths,
+        newRecovered: res?.NewRecovered,
+        premium: res?.Premium,
+        slug: res?.Slug,
+        totalConfirmed: res?.TotalConfirmed,
+        totalDeaths: res?.TotalDeaths,
+        totalRecovered: res?.TotalRecovered
+      };
+    });
+  }
 
-    static async getDate() {
-        const data = await this.getData().then((res) => res?.Date);
+  static async getDate() {
+    const data = await this.getData().then((res) => res?.Date);
 
-        return data;
-    }
+    return data;
+  }
 
-    static async getGlobal() {
-        const data = await this.getData().then((res) => res?.Global);
+  static async getGlobal() {
+    const data = await this.getData().then((res) => res?.Global);
 
-        return {
-            newConfirmed: data?.NewConfirmed,
-            newDeaths: data?.NewDeaths,
-            newRecovered: data?.NewRecovered,
-            totalConfirmed: data?.TotalConfirmed,
-            totalDeaths: data?.TotalDeaths,
-            totalRecovered: data?.TotalRecovered
-        };
-    }
+    return {
+      newConfirmed: data?.NewConfirmed,
+      newDeaths: data?.NewDeaths,
+      newRecovered: data?.NewRecovered,
+      totalConfirmed: data?.TotalConfirmed,
+      totalDeaths: data?.TotalDeaths,
+      totalRecovered: data?.TotalRecovered
+    };
+  }
 
   static setState(dataToStore) {
     this.summaryData = dataToStore;
@@ -64,5 +64,49 @@ export class CovidDashboardService {
 
   static getCountry() {
     return this.currentSelect;
+  }
+
+  static getDataWorld() {
+    return fetch(WORLD_URL)
+      .then((res) => this.getStatus(res))
+      .catch((err) => err);
+  }
+
+  static getDataCountry() {
+    return fetch(`${COUNTRY_URL}${this.currentSelect}`)
+      .then((res) => this.getStatus(res))
+      .catch((err) => err);
+  }
+
+  static async getWorld() {
+    const data = await this.getDataWorld().then((res) => res);
+
+    return data?.map((res) => {
+      return {
+        newConfirmed: res?.NewConfirmed,
+        newDeaths: res?.NewDeaths,
+        newRecovered: res?.NewRecovered,
+        totalConfirmed: res?.TotalConfirmed,
+        totalDeaths: res?.TotalDeaths,
+        totalRecovered: res?.TotalRecovered
+      };
+    });
+  }
+
+  static async getCountryTotal() {
+    const data = await this.getDataCountry().then((res) => res);
+
+    return data?.map((res) => {
+      return {
+        country: res?.Country,
+        code: res?.CountryCode,
+        date: res?.Date,
+        lat: res?.Lat,
+        lon: res?.Lon,
+        totalConfirmed: res?.Confirmed,
+        totalDeaths: res?.Deaths,
+        totalRecovered: res?.Recovered
+      };
+    });
   }
 }

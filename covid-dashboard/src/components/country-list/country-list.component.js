@@ -7,7 +7,6 @@ export class CountryList {
     this.searchInput = document.getElementById('search');
     this.cause = document.querySelector('.cause');
     this.sortItem = 0;
-    this.per = '';
 
     this.searchInput.addEventListener('input', (e) => {
       this.searchTerm = e.target.value;
@@ -26,26 +25,16 @@ export class CountryList {
         if (this.sortItem !== 11) this.sortItem += 1;
         else this.sortItem = 0;
       }
-      document.querySelector('.cause').innerHTML = `<span class="cause">${causesStr[this.sortItem]}</span>`
-      this.countriesList.innerHTML = '';
-      this.per = '';
-      if (this.sortItem > 5) {
-        this.loadCountryData(0);
-        this.per = 'per';
-      }
-
-      this.countriesData.sort((a, b) => {
-        return b[causes[this.sortItem] + this.per] - a[causes[this.sortItem] + this.per];
-      });
-      this.loadCountry(0);
+      this.sortByDescend(this.sortItem);
     });
 
   }
 
-  sortByDescend(sortItem) {
+  sortByDescend() {
+    this.countriesData = this.countriesDataStore;
     document.querySelector('.cause').innerHTML = `<span class="cause">${causesStr[this.sortItem]}</span>`
     this.countriesData.sort((a, b) => {
-      return b[causes[this.sortItem] + this.per] - a[causes[this.sortItem] + this.per];
+      return b[causes[this.sortItem]] - a[causes[this.sortItem]];
     });
     CovidDashboardService.setState(this.countriesData);
     this.countriesList.innerHTML = '';
@@ -57,21 +46,11 @@ export class CountryList {
     const country = this.countriesData[index];
     const listItem = document.createElement('li');
     listItem.setAttribute('data-country', country.code);
-    const restcountry = restcountries.filter((item) => item.name === country.country)[0];
-    listItem.innerHTML = `<img src=${restcountry.flag} class="country-item__flag" alt=""><span>${country.country}</span>
-    <span>${country[causes[this.sortItem] + this.per]}</span>`;
+    listItem.innerHTML = `<img src=${country.flag} class="country-item__flag" alt=""><span>${country.country}</span>
+    <span>${country[causes[this.sortItem]]}</span>`;
     this.countriesList.appendChild(listItem);
     if (this.countriesData[index + 1]) {
       this.loadCountry(index + 1);
-    }
-  }
-
-  loadCountryData(index) {
-    const country = this.countriesData[index];
-    const restcountry = restcountries.filter((item) => item.name === country.country)[0];
-    this.countriesData[index][causes[this.sortItem].concat('per')] = Math.floor(country[causes[this.sortItem]] * 100000 / restcountry.population);
-    if (this.countriesData[index + 1]) {
-      this.loadCountryData(index + 1);
     }
   }
 
@@ -81,7 +60,18 @@ export class CountryList {
 
   viewData(data) {
     this.countriesData = data;
-    this.countriesDataStore = data;
-    this.sortByDescend(this.sortItem);
+    for (let i = 0; i < this.countriesData.length; i += 1) {
+      const restcountry = restcountries.filter((item1) => item1.name === this.countriesData[i].country)[0];
+      this.countriesData[i].totalConfirmedPer = Math.floor(this.countriesData[i].totalConfirmed * 100000 / restcountry.population);
+      this.countriesData[i].totalDeathsPer = Math.floor(this.countriesData[i].totalDeaths * 100000 / restcountry.population);
+      this.countriesData[i].totalRecoveredPer = Math.floor(this.countriesData[i].totalRecovered * 100000 / restcountry.population);
+      this.countriesData[i].newConfirmedPer = Math.floor(this.countriesData[i].newConfirmed * 100000 / restcountry.population);
+      this.countriesData[i].newDeathsPer = Math.floor(this.countriesData[i].newDeaths * 100000 / restcountry.population);
+      this.countriesData[i].newRecoveredPer = Math.floor(this.countriesData[i].newRecovered * 100000 / restcountry.population);
+      this.countriesData[i].flag = restcountry.flag;
+      this.countriesData[i].population = restcountry.population;
+    }
+    this.countriesDataStore = this.countriesData;
+    this.sortByDescend();
   }
 }
