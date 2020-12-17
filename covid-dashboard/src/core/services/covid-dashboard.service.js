@@ -79,18 +79,7 @@ export class CovidDashboardService {
   }
 
   static async getWorld() {
-    const data = await this.getDataWorld().then((res) => res);
-
-    return data?.map((res) => {
-      return {
-        newConfirmed: res?.NewConfirmed,
-        newDeaths: res?.NewDeaths,
-        newRecovered: res?.NewRecovered,
-        totalConfirmed: res?.TotalConfirmed,
-        totalDeaths: res?.TotalDeaths,
-        totalRecovered: res?.TotalRecovered
-      };
-    });
+    return this.getDataWorld().then((res) => res);
   }
 
   static async getCountryTotal() {
