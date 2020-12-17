@@ -1,27 +1,8 @@
 import "./table.component.scss";
-
-import { perPeople } from "./utils";
-import { getViewTable, bodyTableView } from "./table.template";
-
 import { WORLD_POPULATION, CovidDashboardService } from "../../core/index";
 
-export class Table {
-
-    init() {
-  changeTableView(radios) {
-    const tableBody = document.querySelector(".table__body");
-    let checkedValue = "";
-
-    radios.forEach((item) => {
-      if (item.checked) {
-        checkedValue += item.value;
-      }
     });
 
-    if (this.currentSelect !== "World") {
-      const currentCountry = CovidDashboardService.getState().filter((item) => {
-        return item.country === this.currentSelect;
-      });
 
       switch (checkedValue) {
         case "globalglobalnumber":
