@@ -5,31 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Demo App</title>
   <link rel="shortcut icon" href="./src/assets/img/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;0,600;1,600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <header class="header">
+    <h1 class="header__heading">COVID-19 Dashboard by the Center for Systems
+    Science and Engineering (CSSE) at Johns Hopkins University (JHU)</h1>
+  </header>
 <main>
-  </div>
+  <div class="all-functional">
+    <div class="country-list-and-search fullwidth">
+      <div class="global-cases">
+        <span class="global-cases__heading">Global Cases</span>
+        <span class="global-cases__count">74632000</span>
+      </div>
+      <input class="search" type="text" id="search" placeholder="Search for a Country">
+      <div class="country-list"></div>
+      <div class="switcher">
+        <img class="btn btn-back" id="btn-back" src="./src/assets/img/arrow.svg">
+        <span class="cause">Total Confirmed</span>
+        <img class="btn btn-forward" id="btn-forward" src="./src/assets/img/arrow.svg">
+      </div>
     </div>
     <div class="map-and-other-stuff">
       <div class="world-map-and-switcher fullwidth" >
         <div class="world-map" id="map"></div>
         <div class="switcher">
           <img
-            class="map-btn-back"
+            class="btn map-btn-back"
             id="map-btn-back"
             src="./src/assets/img/arrow.svg"
-            width="20"
-            height="20"
-            style="transform: rotate(-100grad)"
           />
           <span class="cause1">Total Confirmed</span>
           <img
-            class="map-btn-forward"
+            class="btn map-btn-forward"
             id="map-btn-forward"
             src="./src/assets/img/arrow.svg"
-            width="20"
-            height="20"
-            style="transform: rotate(100grad)"
           />
         </div>
       </div>
@@ -61,10 +73,9 @@
         </div>
         <div class="graph-chart fullwidth"></div>
       </div>
-    </div>
   </div>
 </main>
-<footer>
+<footer class="footer">
   <p>
     <span>2020 © covid-dashboard</span>
     <a href="https://github.com/dispet">dispet</a>

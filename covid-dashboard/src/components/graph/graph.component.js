@@ -12,33 +12,9 @@ export class Graph {
     this.arrowBlock = document.createElement('div');
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext("2d");
-    this.counter = 0;
-    this.arrowBlock.addEventListener('click', (e) => {
-      console.log('counter:', this.counter)
-      if (e.target.classList.contains('arrow-right')) {
-        this.counter += 1;
-        if (this.counter > this.mainDate.length - 1) this.counter = 0;
-
-        this.title.textContent = `${this.obj} ${this.mainDate[this.counter].title}`;
-        const set = Object.values(this.externalData[this.mainDate[this.counter].type]);
-        const backgroundColor = this.mainDate[this.counter].backgroundColor;
-        this.updateGraph(backgroundColor, set)
-      }
-      if (e.target.classList.contains('arrow-left')) {
-        this.counter -= 1;
-        if (this.counter < 0) this.counter = this.mainDate.length - 1;
-
-        this.title.textContent = `${this.obj} ${this.mainDate[this.counter].title}`;
-        const set = Object.values(this.externalData[this.mainDate[this.counter].type]);
-        const backgroundColor = this.mainDate[this.counter].backgroundColor;
-        this.updateGraph(backgroundColor, set)
-      }
-    });
   }
 
-  loadGraph(externalData, obj) {
-    this.obj = obj
-    this.externalData = externalData;
+  loadGraph(externalData, obj = 'World') {
     this.graphBlock.className = 'graph-block';
     this.canvas.className = 'graph';
     this.graphChart.append(this.graphBlock);
@@ -47,30 +23,17 @@ export class Graph {
     this.arrowBlock.className = 'arrow-block';
     this.graphChart.append(this.arrowBlock);
 
+    const lables = Object.keys(externalData.cases);
+    const dataSet = Object.values(externalData.cases);
+
     this.arrowBlock.innerHTML =
       `<button class="arrow-block__button arrow-left"></button>
     <div class="arrow-block__title"></div>
     <button class="arrow-block__button arrow-right"></button>`;
 
-    this.title = document.querySelector('.arrow-block__title')
+    const title = document.querySelector('.arrow-block__title')
 
-    this.mainDate = [
-      {
-        title: 'Daily Cases',
-        type: 'cases',
-        backgroundColor: '#f1c40f'
-      }
-      ,
-      {
-        title: 'Daily Deaths',
-        type: 'deaths',
-        backgroundColor: '#e74c3c'
-      },
-      {
-        title: 'Daily Recovered',
-        type: 'recovered',
-        backgroundColor: '#27ae60'
-      },
+    const mainDate = [
       {
         title: 'Daily Cases',
         type: 'cases',
@@ -90,28 +53,12 @@ export class Graph {
       {
         title: 'Daily Cases per 100 000',
         type: 'casesPerOneHundredThousand',
-        backgroundColor: '#f1c40f'
-      },
-      {
-        title: 'Daily Deaths per 100 000',
-        type: 'deathsPerOneHundredThousand',
-        backgroundColor: '#e74c3c'
-      },
-      {
-        title: 'Daily Recovered per 100 000',
-        type: 'recoveredPerOneHundredThousand',
         backgroundColor: '#27ae60'
       },
-
-      {
-        title: 'Daily Cases per 100 000',
-        type: 'casesPerOneHundredThousand',
-        backgroundColor: '#f1c40f'
-      },
       {
         title: 'Daily Deaths per 100 000',
         type: 'deathsPerOneHundredThousand',
-        backgroundColor: '#e74c3c'
+        backgroundColor: '#27ae60'
       },
       {
         title: 'Daily Recovered per 100 000',
@@ -120,19 +67,14 @@ export class Graph {
       }
     ];
 
-    const lables = Object.keys(externalData[this.mainDate[this.counter].type]);
-    const dataSet = Object.values(externalData[this.mainDate[this.counter].type]);
-    const background = this.mainDate[this.counter].backgroundColor;
-    this.title.textContent = `${obj} ${this.mainDate[this.counter].title}`;
-
-    this.updateGraph = (color = background, set = dataSet) => {
+    const updateGraph = (background = "#f1c40f", set = dataSet) => {
       const data = {
         labels: lables,
         datasets: [
           {
             label: "Daily Cases",
             data: set,
-            backgroundColor: color
+            backgroundColor: background
           }
         ]
       };
@@ -142,7 +84,7 @@ export class Graph {
           display: false
         },
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         scales: {
           yAxes: [
             {
@@ -167,7 +109,31 @@ export class Graph {
       this.chart.update();
     };
 
-    this.updateGraph();
+    updateGraph();
+
+    let counter = 0
+    title.textContent = `${obj} Daily Cases`;
+
+    this.arrowBlock.addEventListener('click', (e) => {
+      if (e.target.classList.contains('arrow-right')) {
+        counter += 1;
+        if (counter > mainDate.length - 1) counter = 0;
+
+        title.textContent = `${obj} ${mainDate[counter].title}`;
+        const set = Object.values(externalData[mainDate[counter].type]);
+        const backgroundColor = mainDate[counter].backgroundColor;
+        updateGraph(backgroundColor, set)
+      }
+      if (e.target.classList.contains('arrow-left')) {
+        counter -= 1;
+        if (counter < 0) counter = mainDate.length - 1;
+
+        title.textContent = `${obj} ${mainDate[counter].title}`;
+        const set = Object.values(externalData[mainDate[counter].type]);
+        const backgroundColor = mainDate[counter].backgroundColor;
+        updateGraph(backgroundColor, set)
+      }
+    });
 
   };
 
@@ -181,7 +147,7 @@ export class Graph {
   }
 
   transformData(data) {
-    // const obj = data[0].country;
+    const obj = data[0].country;
     let population = WORLD_POPULATION;
     const processedDate = {
       cases: {},
@@ -195,7 +161,7 @@ export class Graph {
     const recovered = [];
 
     restcountries.forEach((country) => {
-      if (country.name === data[0].country) {
+      if (country.name === obj) {
         population = country.population;
       }
     })
@@ -224,7 +190,7 @@ export class Graph {
       processedDate.recoveredPerOneHundredThousand[key] = Math.floor(Object.values(processedDate.recovered)[index] * 100000 / population);
     });
 
-    this.loadGraph(processedDate, data[0].country);
+    this.loadGraph(processedDate, obj);
   }
 
   viewData(data) {
@@ -240,6 +206,6 @@ export class Graph {
       processedDate.recoveredPerOneHundredThousand[key] = Math.floor(Object.values(processedDate.recovered)[index] * 100000 / WORLD_POPULATION);
     });
 
-    this.loadGraph(processedDate, 'World');
+    this.loadGraph(processedDate);
   }
 }
