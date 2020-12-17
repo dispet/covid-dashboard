@@ -1,5 +1,5 @@
 export const SUMMARY_URL = "https://api.covid19api.com/summary";
-export const WORLD_URL = "https://api.covid19api.com/world";
+export const WORLD_URL = "https://disease.sh/v3/covid-19/historical/all?lastdays=all";
 export const COUNTRY_URL = "https://api.covid19api.com/country/";
 
 
