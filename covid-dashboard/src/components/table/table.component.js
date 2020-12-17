@@ -1,6 +1,8 @@
 import "./table.component.scss";
+import { fullWidth } from "./fullwidth";
 import { WORLD_POPULATION, CovidDashboardService } from "../../core/index";
 
+fullWidth();
 function tabs() {
     document.addEventListener("click", (e) => {
         const tabsBodies = document.querySelectorAll(".tabs__item");
@@ -23,6 +25,7 @@ function tabs() {
     });
 }
 tabs();
+
 
 export class Table {
     populationDivideHundred = WORLD_POPULATION / 100000;
