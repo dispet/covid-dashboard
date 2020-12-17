@@ -1,9 +1,8 @@
 import "./table.component.scss";
-<<<<<<< HEAD
+
 import { fullWidth, createTabs } from "./utils";
 import { getViewTable } from "./table.template";
-=======
->>>>>>> feat: add statistics per 100000
+
 import { WORLD_POPULATION, CovidDashboardService } from "../../core/index";
 
 // function catchState() {
@@ -18,6 +17,29 @@ import { WORLD_POPULATION, CovidDashboardService } from "../../core/index";
 
 createTabs();
 fullWidth();
+function tabs() {
+    document.addEventListener("click", (e) => {
+        const tabsBodies = document.querySelectorAll(".tabs__item");
+        const tabsHeaders = document.querySelectorAll(".tabs__header_item");
+        const target = e.target;
+        tabsHeaders.forEach((tabHeader) => {
+            tabHeader.classList.remove("active");
+        });
+        if (target.classList.contains("tabs__header_item")) {
+            target.classList.add("active");
+            tabsBodies.forEach((tabBody) => {
+                tabBody.classList.remove("active");
+            });
+            tabsBodies.forEach((tabBody) => {
+                if (tabBody.dataset.tab === target.dataset.tab) {
+                    tabBody.classList.add("active");
+                }
+            });
+        }
+    });
+}
+tabs();
+
 export class Table {
     populationDivideHundred = WORLD_POPULATION / 100000;
 
