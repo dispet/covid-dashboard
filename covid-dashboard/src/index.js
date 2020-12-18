@@ -12,7 +12,7 @@ document.querySelector('.country-list').addEventListener('click', (e) => {
   const countryCode = e.target.closest('li').getAttribute('data-country');
   if (e.target !== e.currentTarget) {
     CovidDashboardService.setCountry(countryCode);
-    countryList.viewData(CovidDashboardService.getState());
+    countryList.sortByDescend();
   }
   table.update(CovidDashboardService.getCountry());
   wordMap.update(CovidDashboardService.getCountry());
@@ -29,5 +29,3 @@ countryList.init();
 graph.init();
 table.init();
 wordMap.init();
-
-

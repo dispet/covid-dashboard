@@ -1,9 +1,12 @@
 export const SUMMARY_URL = "https://api.covid19api.com/summary";
+export const WORLD_URL = "https://api.covid19api.com/world";
+export const COUNTRY_URL = "https://api.covid19api.com/country/";
+
 
 export const WORLD_POPULATION = 7827000000;
 
 export const causes = ['totalConfirmed', 'totalDeaths', 'totalRecovered', 'newConfirmed', 'newDeaths', 'newRecovered',
-  'totalConfirmed', 'totalDeaths', 'totalRecovered', 'newConfirmed', 'newDeaths', 'newRecovered',]
+  'totalConfirmedPer', 'totalDeathsPer', 'totalRecoveredPer', 'newConfirmedPer', 'newDeathsPer', 'newRecoveredPer',]
 
 export const causesStr = ['Total Confirmed', 'Total Deaths', 'Total Recovered', 'New Confirmed', 'New Deaths', 'New Recovered',
   'Total Confirmed per 100000 population', 'Total Deaths per 100000 population', 'Total Recovered per 100000 population',

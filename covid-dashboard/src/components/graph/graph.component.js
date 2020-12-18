@@ -52,19 +52,17 @@ export class Graph {
   }
 
   init() {
-    CovidDashboardService.getGlobal().then((data) => this.viewData(data));
+    CovidDashboardService.getWorld().then((data) => this.viewData(data));
   }
 
   update(currentSelect) {
-    // this.countriesData = CovidDashboardService.getState().filter((item) => item.code === currentSelect)[0];
-    // this.currentSelect = this.countriesData.country;
+
+    CovidDashboardService.getCountryTotal().then((data) => this.viewData(data));
     this.loadGraph();
   }
 
   viewData(data) {
-    console.log(data)
-    // this.countriesData = data;
-    // this.countriesDataStore = data;
+    // console.log(data)
     this.loadGraph();
   }
 }
