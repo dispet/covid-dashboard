@@ -1,24 +1,28 @@
-import { CovidDashboardService } from "../../core/index";
-import { AREA_COUNTRIES } from "./counties";
+import {CovidDashboardService, restcountries} from "../../core/index";
+import {AREA_COUNTRIES} from "./counties";
 
 export class WordMap {
-    constructor() {
-        this.worldMap = document.getElementById("map");
-    }
+  constructor() {
+    this.worldMap = document.getElementById("map");
+  }
 
-    initMap() {
-        // const mainMap = L.map(this.worldMap).setView([53.89, 27.55], 2);
-        // mainMap.createPane("labels");
+  initMap() {
+    // const mainMap = L.map(this.worldMap).setView([53.89, 27.55], 2);
+    // mainMap.createPane("labels");
 
-        //     const positronLabels = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png", {
-        //         attribution: "©OpenStreetMap, ©CartoDB"
-        //         // pane: 'labels',
-        //     }).addTo(mainMap);
-    }
+    //     const positronLabels = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png", {
+    //         attribution: "©OpenStreetMap, ©CartoDB"
+    //         // pane: 'labels',
+    //     }).addTo(mainMap);
+  }
 
-    init() {}
+  init() {
+  }
 
-    update(currentSelect) {}
+  update(currentSelect) {
+
+  }
+
 }
 
 // const mymap = L.map("map").setView([53.89, 27.55], 4);
