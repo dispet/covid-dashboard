@@ -6,7 +6,7 @@ html {
   font-size: 10px;
   margin: 0;
   padding: 0;
-  color: #bdbdbd;
+  color: white;
   background-color: #414040;
 
 }
@@ -33,8 +33,25 @@ input {
 .country-list-and-search {
   display: flex;
   width: 20vw;
-  height: 93vh;
+  height: 91vh;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.global-cases {
+  height: 6vh;
+  box-sizing: border-box;
+  border: 1px white solid;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.global-cases__count{
+  font-size: 2.5rem;
+  color: rgb(255, 0, 0);
 }
 
 .search {
@@ -53,7 +70,7 @@ input {
 
 .country-list {
   display: flex;
-  height: 90vh;
+  height: 70vh;
   box-sizing: border-box;
   border: 1px white solid;
   margin: 0;
@@ -66,6 +83,8 @@ input {
   display: flex;
   justify-content: space-between;
   font-size: 1.5rem;
+  padding: 2px;
+  border: 1px #bdbdbd solid;
 }
 
 .country-list > li:hover {
@@ -76,9 +95,17 @@ input {
   content: "";
 }
 
+.country--select {
+  background-color: rgb(65, 194, 245);
+}
+
 .country-item__flag {
   width: 20px;
   height: 15px;
+}
+
+.country-item__cases {
+  color: rgb(255, 0, 0);
 }
 
 .map-and-other-stuff {
@@ -108,7 +135,6 @@ input {
   width: 49%;
   flex-direction: column;
   border: 1px white solid;
-  padding: 1px 1px 0;
 }
 
 .table-data > span {
@@ -218,4 +244,56 @@ a {
   .switcher {
     font-size: 0.7rem;
   }
+}
+/* Popup container */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
 }

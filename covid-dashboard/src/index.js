@@ -25,7 +25,12 @@ document.querySelector('.world-map').addEventListener('click', (e) => {
   graph.update(CovidDashboardService.getCountry());
 });
 
-countryList.init();
-graph.init();
-table.init();
-wordMap.init();
+function allIntit() {
+  countryList.init();
+  graph.init();
+  table.init();
+  wordMap.init();
+  setTimeout(allIntit, 7200000);
+}
+
+allIntit();
