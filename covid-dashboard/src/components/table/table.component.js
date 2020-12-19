@@ -40,6 +40,7 @@ function tabs() {
 }
 tabs();
 
+
 export class Table {
     populationDivideHundred = WORLD_POPULATION / 100000;
 
