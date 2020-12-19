@@ -46,9 +46,13 @@
         padding: 10px;
     }
     .table__body {
-        display: flex;
+        display: none;
         text-align: center;
+        &.active {
+            display: flex;
+        }
     }
+
     .table__item {
         width: 33%;
     }
