@@ -82,19 +82,27 @@ export class Graph {
 
   updateGraph();
 
-    let counter = 1
+    let counter = 0
     title.textContent = 'World Daily Cases';
 
     this.arrowBlock.addEventListener('click', (e) => {
-      if (e.target.classList.contains('arrow-block__button')) {
+      if (e.target.classList.contains('arrow-right')) {
+        counter += 1;
         if (counter > wordDate.length - 1) counter = 0;
 
         title.textContent = wordDate[counter].title;
         const set = Object.values(externalData[wordDate[counter].type]);
         const backgroundColor = wordDate[counter].backgroundColor;
         updateGraph(backgroundColor, set)
+      }
+      if (e.target.classList.contains('arrow-left')) {
+        counter -= 1;
+        if (counter < 0) counter = wordDate.length - 1;
 
-        counter += 1;
+        title.textContent = wordDate[counter].title;
+        const set = Object.values(externalData[wordDate[counter].type]);
+        const backgroundColor = wordDate[counter].backgroundColor;
+        updateGraph(backgroundColor, set)
       }
     });
 
