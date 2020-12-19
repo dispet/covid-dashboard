@@ -178,8 +178,8 @@ export const restcountries = [{
   "flag": "https://restcountries.eu/data/bes.svg",
   "name": "Bonaire, Sint Eustatius and Saba",
   "population": 17408,
-  "lat": 0,
-  "lon": 0
+  "lat": 12.1684,
+  "lon": -68.3082
 }, {
   "flag": "https://restcountries.eu/data/bih.svg",
   "name": "Bosnia and Herzegovina",
@@ -214,8 +214,8 @@ export const restcountries = [{
   "flag": "https://restcountries.eu/data/umi.svg",
   "name": "United States Minor Outlying Islands",
   "population": 300,
-  "lat": 0,
-  "lon": 0
+  "lat": 19.282319,
+  "lon": 166.647047
 }, {
   "flag": "https://restcountries.eu/data/vgb.svg",
   "name": "Virgin Islands (British)",
@@ -370,8 +370,8 @@ export const restcountries = [{
   "flag": "https://restcountries.eu/data/cuw.svg",
   "name": "Curaçao",
   "population": 154843,
-  "lat": 0,
-  "lon": 0
+  "lat": 12.2135221,
+  "lon": -68.9495816
 }, {
   "flag": "https://restcountries.eu/data/cyp.svg",
   "name": "Cyprus",
@@ -1138,8 +1138,8 @@ export const restcountries = [{
   "flag": "https://restcountries.eu/data/blm.svg",
   "name": "Saint Barthélemy",
   "population": 9417,
-  "lat": 0,
-  "lon": 0
+  "lat": 17.9139222,
+  "lon": -62.8338521
 }, {
   "flag": "https://restcountries.eu/data/shn.svg",
   "name": "Saint Helena, Ascension and Tristan da Cunha",
@@ -1162,8 +1162,8 @@ export const restcountries = [{
   "flag": "https://restcountries.eu/data/maf.svg",
   "name": "Saint Martin (French part)",
   "population": 36979,
-  "lat": 0,
-  "lon": 0
+  "lat": 18.073099,
+  "lon": -63.082199
 }, {
   "flag": "https://restcountries.eu/data/spm.svg",
   "name": "Saint Pierre and Miquelon",
@@ -1234,8 +1234,8 @@ export const restcountries = [{
   "flag": "https://restcountries.eu/data/sxm.svg",
   "name": "Sint Maarten (Dutch part)",
   "population": 38247,
-  "lat": 0,
-  "lon": 0
+  "lat": 18.05,
+  "lon": -63.05
 }, {
   "flag": "https://restcountries.eu/data/svk.svg",
   "name": "Slovakia",
@@ -1282,8 +1282,8 @@ export const restcountries = [{
   "flag": "https://restcountries.eu/data/ssd.svg",
   "name": "South Sudan",
   "population": 12131000,
-  "lat": 0,
-  "lon": 0
+  "lat": 4.859363,
+  "lon": 31.571251
 }, {
   "flag": "https://restcountries.eu/data/esp.svg",
   "name": "Spain",
