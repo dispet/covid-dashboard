@@ -72,8 +72,9 @@ export class CovidDashboardService {
       .catch((err) => err);
   }
 
-  static getDataCountry() {
-    return fetch(`${COUNTRY_URL}${this.currentSelect}`)
+  static getDataCountry(currentSelect) {
+    const url = `${COUNTRY_URL}${currentSelect}`;
+    return fetch(url)
       .then((res) => this.getStatus(res))
       .catch((err) => err);
   }
@@ -82,8 +83,9 @@ export class CovidDashboardService {
     return this.getDataWorld().then((res) => res);
   }
 
-  static async getCountryTotal() {
-    const data = await this.getDataCountry().then((res) => res);
+  static async getCountryTotal(currentSelect) {
+
+    const data = await this.getDataCountry(currentSelect).then((res) => res);
 
     return data?.map((res) => {
       return {
