@@ -13,7 +13,7 @@ export class Graph {
     this.ctx = this.canvas.getContext("2d");
   }
 
-  loadGraph(externalData) {
+  loadGraph(externalData, obj = 'World') {
     this.canvas.className = 'graph';
     this.graphChart.append(this.canvas);
 
@@ -32,65 +32,65 @@ export class Graph {
 
     const wordDate = [
       {
-        title: 'World Daily Cases',
+        title: 'Daily Cases',
         type: 'cases',
         backgroundColor: '#f1c40f'
       }
       ,
       {
-        title: 'World Daily Deaths',
+        title: 'Daily Deaths',
         type: 'deaths',
         backgroundColor: '#e74c3c'
       },
       {
-        title: 'World Daily Recovered',
+        title: 'Daily Recovered',
         type: 'recovered',
         backgroundColor: '#27ae60'
       }
     ];
- const updateGraph = (background = '#f1c40f', set = dataSet) => {
-    const data = {
-      labels: lables,
-      datasets: [{
-        label: 'Daily Cases',
-        data: set,
-        backgroundColor: background,
-        // borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 1,
-      }]
-    }
-
-    const options = {
-      legend: {
-        display: false,
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
+    const updateGraph = (background = '#f1c40f', set = dataSet) => {
+      const data = {
+        labels: lables,
+        datasets: [{
+          label: 'Daily Cases',
+          data: set,
+          backgroundColor: background,
+          // borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1,
         }]
       }
+
+      const options = {
+        legend: {
+          display: false,
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+
+      return new Chart(this.ctx, {
+        type: 'bar',
+        data,
+        options
+      });
     }
 
-    return new Chart(this.ctx, {
-      type: 'bar',
-      data,
-      options
-    });
-  }
-
-  updateGraph();
+    updateGraph();
 
     let counter = 0
-    title.textContent = 'World Daily Cases';
+    title.textContent = `${obj} Daily Cases`;
 
     this.arrowBlock.addEventListener('click', (e) => {
       if (e.target.classList.contains('arrow-right')) {
         counter += 1;
         if (counter > wordDate.length - 1) counter = 0;
 
-        title.textContent = wordDate[counter].title;
+        title.textContent = `${obj} ${wordDate[counter].title}`;
         const set = Object.values(externalData[wordDate[counter].type]);
         const backgroundColor = wordDate[counter].backgroundColor;
         updateGraph(backgroundColor, set)
@@ -99,7 +99,7 @@ export class Graph {
         counter -= 1;
         if (counter < 0) counter = wordDate.length - 1;
 
-        title.textContent = wordDate[counter].title;
+        title.textContent = `${obj} ${wordDate[counter].title}`;
         const set = Object.values(externalData[wordDate[counter].type]);
         const backgroundColor = wordDate[counter].backgroundColor;
         updateGraph(backgroundColor, set)
@@ -113,8 +113,38 @@ export class Graph {
   }
 
   update(currentSelect) {
-    CovidDashboardService.getCountryTotal().then((data) => this.viewData(data));
-    this.loadGraph();
+    this.countriesData = CovidDashboardService.getState().filter((item) => item.code === currentSelect)[0];
+    CovidDashboardService.getCountryTotal(this.countriesData.slug).then((data) => this.transformData(data));
+  }
+
+  transformData(data) {
+    const obj = data[0].country;
+    const processedDate = {
+      cases: {},
+      deaths: {},
+      recovered: {}
+    }
+
+    let date = [];
+    const cases = [];
+    const deaths = [];
+    const recovered = [];
+
+    data.forEach((item) => {
+      date.push(item.date);
+      cases.push(item.totalConfirmed);
+      deaths.push(item.totalDeaths);
+      recovered.push(item.totalRecovered);
+    });
+
+    date = date.map((item) => item.substring(0, 10))
+    date.forEach((key, index) => {
+      processedDate.cases[key] = cases[index];
+      processedDate.deaths[key] = deaths[index];
+      processedDate.recovered[key] = recovered[index];
+    });
+
+    this.loadGraph(processedDate, obj);
   }
 
   viewData(data) {
