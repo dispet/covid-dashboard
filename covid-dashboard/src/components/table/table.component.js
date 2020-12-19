@@ -37,7 +37,6 @@ export class Table {
             const currentCountry = CovidDashboardService.getState().filter((item) => {
                 return item.country === this.currentSelect;
             });
-            console.log(currentCountry)
             this.tableContainer.innerHTML = getViewTable(
                 this.currentSelect,
                 currentCountry[0].totalConfirmed,
