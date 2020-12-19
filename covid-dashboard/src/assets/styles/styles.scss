@@ -15,25 +15,43 @@ main {
   display: flex;
   width: 100vw;
   height: 95vh;
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   align-items: center;
   justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.covid-title {
+  height: 4vh;
+  width: 98vw;
+  border: 1px solid #ddd;
+  display: flex;
+  font-size: 1.9rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.all-functional {
+  display: flex;
+  width: 98vw;
+  height: 88vh;
+  justify-content: space-between;
+  box-sizing: border-box;
+  align-items: center;
 }
 
 input {
   border: 1px solid #ddd;
   outline: none;
   font-size: 1.5rem;
-  //padding: 15px;
-  //width: 480px;
 }
 
 .country-list-and-search {
   display: flex;
-  width: 20vw;
-  height: 91vh;
+  width: 22vw;
+  height: 86vh;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -49,8 +67,8 @@ input {
   align-items: center;
 }
 
-.global-cases__count{
-  font-size: 2.5rem;
+.global-cases__count {
+  font-size: 2.3rem;
   color: rgb(255, 0, 0);
 }
 
@@ -111,7 +129,7 @@ input {
 .map-and-other-stuff {
   display: flex;
   width: 75vw;
-  height: 93vh;
+  height: 88vh;
   flex-direction: column;
   justify-content: space-evenly;
 }
@@ -198,6 +216,9 @@ a {
 }
 
 @media (max-width: 1024px) {
+  .covid-title {
+    font-size: 1.8rem;
+  }
   .country-list > li {
     font-size: 1.1rem;
   }
@@ -211,6 +232,9 @@ a {
 }
 
 @media (max-width: 768px) {
+  .covid-title {
+    font-size: 1.7rem;
+  }
   .country-list > li {
     font-size: 0.9rem;
   }
@@ -223,6 +247,9 @@ a {
 }
 
 @media (max-width: 650px) {
+  .covid-title {
+    font-size: 1.6rem;
+  }
   .country-list > li {
     font-size: 0.8rem;
   }
@@ -235,6 +262,9 @@ a {
 }
 
 @media (max-width: 500px) {
+  .covid-title {
+    font-size: 1.5rem;
+  }
   .country-list > li {
     font-size: 0.7rem;
   }
@@ -245,6 +275,7 @@ a {
     font-size: 0.7rem;
   }
 }
+
 /* Popup container */
 .popup {
   position: relative;
@@ -289,11 +320,19 @@ a {
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity:1 ;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
