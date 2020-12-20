@@ -102,6 +102,8 @@ export class Table {
             this.countriesData.totalDeaths,
             this.countriesData.totalRecovered
         );
+        const radios = document.querySelectorAll(".switchers__input");
+        this.changeTableView(radios);
     }
 
     init() {
