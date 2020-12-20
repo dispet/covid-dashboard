@@ -8,14 +8,17 @@ Chart.defaults.global.defaultFontColor = '#bdbdbd';
 export class Graph {
   constructor() {
     this.graphChart = document.querySelector('.graph-chart');
+    this.graphBlock = document.createElement('div')
     this.arrowBlock = document.createElement('div');
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext("2d");
   }
 
   loadGraph(externalData, obj = 'World') {
+    this.graphBlock.className = 'graph-block';
     this.canvas.className = 'graph';
-    this.graphChart.append(this.canvas);
+    this.graphChart.append(this.graphBlock);
+    this.graphBlock.append(this.canvas);
 
     this.arrowBlock.className = 'arrow-block';
     this.graphChart.append(this.arrowBlock);
@@ -68,6 +71,8 @@ export class Graph {
         legend: {
           display: false,
         },
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
           yAxes: [{
             ticks: {
@@ -143,6 +148,10 @@ export class Graph {
 
     if (true) obj = `${obj} per 100 000`;
 
+    // TODO
+    const modeIndex = CovidDashboardService.getIndex();
+    console.log(modeIndex)
+
     data.forEach((item) => {
       date.push(item.date);
       if (true) {
@@ -170,5 +179,3 @@ export class Graph {
     this.loadGraph(data);
   }
 }
-
-console.log(restcountries)
