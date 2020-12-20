@@ -1,6 +1,6 @@
 import Chart from 'chart.js';
 import './graph.component.scss';
-import { CovidDashboardService } from "../../core/index";
+import { CovidDashboardService, WORLD_POPULATION, restcountries } from "../../core/index";
 // import { doc } from 'prettier';
 
 Chart.defaults.global.defaultFontColor = '#bdbdbd';
@@ -19,6 +19,12 @@ export class Graph {
 
     this.arrowBlock.className = 'arrow-block';
     this.graphChart.append(this.arrowBlock);
+
+    // TODO
+    window.addEventListener('load', () => {
+      const perOneHundredThousand = document.querySelector('.tabs__header_item[data-tab="3"]');
+      console.log(perOneHundredThousand)
+    }, 0)
 
     const lables = Object.keys(externalData.cases);
     const dataSet = Object.values(externalData.cases);
@@ -55,8 +61,6 @@ export class Graph {
           label: 'Daily Cases',
           data: set,
           backgroundColor: background,
-          // borderColor: 'rgba(255, 99, 132, 1)',
-          borderWidth: 1,
         }]
       }
 
@@ -118,7 +122,8 @@ export class Graph {
   }
 
   transformData(data) {
-    const obj = data[0].country;
+    let obj = data[0].country;
+    let population = WORLD_POPULATION;
     const processedDate = {
       cases: {},
       deaths: {},
@@ -130,11 +135,25 @@ export class Graph {
     const deaths = [];
     const recovered = [];
 
+    restcountries.forEach((country) => {
+      if (country.name === obj) {
+        population = country.population;
+      }
+    })
+
+    if (true) obj = `${obj} per 100 000`;
+
     data.forEach((item) => {
       date.push(item.date);
-      cases.push(item.totalConfirmed);
-      deaths.push(item.totalDeaths);
-      recovered.push(item.totalRecovered);
+      if (true) {
+        cases.push(Math.round(item.totalConfirmed * 100000 / population));
+        deaths.push(Math.round(item.totalDeaths * 100000 / population));
+        recovered.push(Math.round(item.totalRecovered * 100000 / population));
+      } else {
+        cases.push(item.totalConfirmed);
+        deaths.push(item.totalDeaths);
+        recovered.push(item.totalRecovered);
+      }
     });
 
     date = date.map((item) => item.substring(0, 10))
@@ -151,3 +170,5 @@ export class Graph {
     this.loadGraph(data);
   }
 }
+
+console.log(restcountries)
