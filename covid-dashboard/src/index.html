@@ -8,24 +8,34 @@
 </head>
 <body>
 <main>
-  <div class="country-list-and-search fullwidth">
-    <input class="search" type="text" id="search" placeholder="Search for a Country">
-    <div class="country-list"></div>
-    <div class="switcher">
-      <img class="btn-back" id="btn-back" src="./src/assets/img/arrow.svg" width="20" height="20"
-           style="transform: rotate(-100grad)">
-      <span class="cause">Total Confirmed</span>
-      <img class="btn-forward" id="btn-forward" src="./src/assets/img/arrow.svg" width="20" height="20"
-           style="transform: rotate(100grad)">
-    </div>
+  <div class="covid-title">
+    <span >COVID-19 Dashboard by the Center for Systems
+    Science and Engineering (CSSE) at Johns Hopkins University (JHU)</span>
   </div>
-  <div class="map-and-other-stuff">
-    <div class="world-map fullwidth" id="map"></div>
-    <div class="table-and-graph">
-      <div class="table-data fullwidth">
-        <div class="table-wrapper"></div>
+  <div class="all-functional">
+    <div class="country-list-and-search fullwidth">
+      <div class="global-cases">
+        <span>Global Cases</span>
+        <span class="global-cases__count">74632000</span>
       </div>
-      <div class="graph-chart fullwidth"></div>
+      <input class="search" type="text" id="search" placeholder="Search for a Country">
+      <div class="country-list"></div>
+      <div class="switcher">
+        <img class="btn-back" id="btn-back" src="./src/assets/img/arrow.svg" width="20" height="20"
+             style="transform: rotate(-100grad)">
+        <span class="cause">Total Confirmed</span>
+        <img class="btn-forward" id="btn-forward" src="./src/assets/img/arrow.svg" width="20" height="20"
+             style="transform: rotate(100grad)">
+      </div>
+    </div>
+    <div class="map-and-other-stuff">
+      <div class="world-map fullwidth" id="map"></div>
+      <div class="table-and-graph">
+        <div class="table-data fullwidth">
+          <div class="table-wrapper"></div>
+        </div>
+        <div class="graph-chart fullwidth"></div>
+      </div>
     </div>
   </div>
 </main>

@@ -18,13 +18,14 @@ export class CountryList {
     document.querySelector('.country-list-and-search').addEventListener('click', (e1) => {
       if (!e1.target.id.includes('btn')) return;
       if (e1.target.id === 'btn-back') {
-        if (this.sortItem !== 0) this.sortItem -= 1;
-        else this.sortItem = 11;
+        this.sortItem -= 1
+        if (this.sortItem < 0) this.sortItem = causes.length - 1;
       }
       if (e1.target.id === 'btn-forward') {
-        if (this.sortItem !== 11) this.sortItem += 1;
-        else this.sortItem = 0;
+        this.sortItem += 1;
+        if (this.sortItem > causes.length - 1) this.sortItem = 0;
       }
+      CovidDashboardService.setIndex(this.sortItem);
       this.sortByDescend(this.sortItem);
     });
 
@@ -37,6 +38,8 @@ export class CountryList {
       return b[causes[this.sortItem]] - a[causes[this.sortItem]];
     });
     CovidDashboardService.setState(this.countriesData);
+
+    this.currentSelect = CovidDashboardService.getCountry();
     this.countriesList.innerHTML = '';
     this.searchInput.value = '';
     this.loadCountry(0);
@@ -46,8 +49,9 @@ export class CountryList {
     const country = this.countriesData[index];
     const listItem = document.createElement('li');
     listItem.setAttribute('data-country', country.code);
+    listItem.setAttribute('class', country.code === this.currentSelect ? 'country--select' : '');
     listItem.innerHTML = `<img src=${country.flag} class="country-item__flag" alt=""><span>${country.country}</span>
-    <span>${country[causes[this.sortItem]]}</span>`;
+    <span class="country-item__cases">${country[causes[this.sortItem]]}</span>`;
     this.countriesList.appendChild(listItem);
     if (this.countriesData[index + 1]) {
       this.loadCountry(index + 1);
@@ -56,9 +60,12 @@ export class CountryList {
 
   init() {
     CovidDashboardService.getCountries().then((data) => this.viewData(data));
+    CovidDashboardService.getGlobal().then((data1) => this.viewData1(data1));
   }
 
   viewData(data) {
+    if (!data) return;
+    CovidDashboardService.setIndex(this.sortItem);
     this.countriesData = data;
     for (let i = 0; i < this.countriesData.length; i += 1) {
       const restcountry = restcountries.filter((item1) => item1.name === this.countriesData[i].country)[0];
@@ -73,5 +80,10 @@ export class CountryList {
     }
     this.countriesDataStore = this.countriesData;
     this.sortByDescend();
+  }
+
+  viewData1(data1) {
+    if (!data1) return;
+    document.querySelector('.global-cases__count').innerHTML = `<span class="global-cases__count">${data1.totalConfirmed}</span>`;
   }
 }

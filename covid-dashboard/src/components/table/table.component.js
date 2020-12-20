@@ -6,8 +6,6 @@ import { getViewTable, bodyTableView } from "./table.template";
 import { WORLD_POPULATION, CovidDashboardService } from "../../core/index";
 
 
-fullWidth();
-
 export class Table {
     partPeoples = 100000;
 
@@ -103,17 +101,23 @@ export class Table {
             this.currentSelect,
             this.countriesData.totalConfirmed,
             this.countriesData.totalDeaths,
-            this.countriesData.totalRecovered,
-            perPeople(this.countriesData.totalConfirmed, WORLD_POPULATION, this.partPeoples),
-            perPeople(this.countriesData.totalDeaths, WORLD_POPULATION, this.partPeoples),
-            perPeople(this.countriesData.totalRecovered, WORLD_POPULATION, this.partPeoples),
-            this.countriesData.newConfirmed,
-            this.countriesData.newDeaths,
-            this.countriesData.newRecovered,
-            perPeople(this.countriesData.newConfirmed, WORLD_POPULATION, this.partPeoples),
-            perPeople(this.countriesData.newDeaths, WORLD_POPULATION, this.partPeoples),
-            perPeople(this.countriesData.newRecovered, WORLD_POPULATION, this.partPeoples)
+            this.countriesData.totalRecovered
         );
+    }
+
+    catchState() {
+        const cases = document.querySelectorAll('[name="cases"]');
+        const casesTimes = document.querySelectorAll('[name="timecases"]');
+        cases.forEach((element) => {
+            element.addEventListener("change", () => {
+                this.tableContainer.innerHTML = getViewTable(
+                    element.value,
+                    this.countriesData.totalConfirmed,
+                    this.countriesData.totalDeaths,
+                    this.countriesData.totalRecovered
+                );
+            });
+        });
     }
 
     init() {
