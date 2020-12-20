@@ -44,7 +44,8 @@ module.exports = {
   },
   optimization: optimization(),
   devServer: {
-    port: 4200
+    port: 4200,
+    hot: true
   },
   plugins: [
     new HTMLWebpackPlugin({
