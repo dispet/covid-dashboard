@@ -53,6 +53,7 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
+    padding-top: 10px;
     @media (max-width: 768px) {
         display: block;
     }
