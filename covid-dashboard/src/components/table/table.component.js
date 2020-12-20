@@ -5,23 +5,6 @@ import { getViewTable, bodyTableView } from "./table.template";
 
 import { WORLD_POPULATION, CovidDashboardService } from "../../core/index";
 
-function changeView() {
-    const cases = document.querySelectorAll(".switchers__input");
-    const tableBodies = document.querySelectorAll(".table__body");
-    cases.forEach((element) => {
-        element.addEventListener("change", () => {
-            tableBodies.forEach((tableBody) => {
-                tableBody.classList.remove("active");
-            });
-
-            tableBodies.forEach((tableBody) => {
-                if (element.value === tableBody.dataset.type) {
-                    tableBody.classList.add("active");
-                }
-            });
-        });
-    });
-}
 
 fullWidth();
 
