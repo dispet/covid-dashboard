@@ -18,13 +18,14 @@ export class CountryList {
     document.querySelector('.country-list-and-search').addEventListener('click', (e1) => {
       if (!e1.target.id.includes('btn')) return;
       if (e1.target.id === 'btn-back') {
-        if (this.sortItem !== 0) this.sortItem -= 1;
-        else this.sortItem = 11;
+        this.sortItem -= 1
+        if (this.sortItem < 0) this.sortItem = causes.length - 1;
       }
       if (e1.target.id === 'btn-forward') {
-        if (this.sortItem !== 11) this.sortItem += 1;
-        else this.sortItem = 0;
+        this.sortItem += 1;
+        if (this.sortItem > causes.length - 1) this.sortItem = 0;
       }
+      CovidDashboardService.setIndex(this.sortItem);
       this.sortByDescend(this.sortItem);
     });
 
@@ -64,6 +65,7 @@ export class CountryList {
 
   viewData(data) {
     if (!data) return;
+    CovidDashboardService.setIndex(this.sortItem);
     this.countriesData = data;
     for (let i = 0; i < this.countriesData.length; i += 1) {
       const restcountry = restcountries.filter((item1) => item1.name === this.countriesData[i].country)[0];

@@ -7262,7 +7262,7 @@ export const AREA_COUNTRIES = {
         {
             type: "Feature",
             id: "KOR",
-            properties: { name: "South Korea" },
+            properties: { name: "Korea (South)" },
             geometry: {
                 type: "Polygon",
                 coordinates: [

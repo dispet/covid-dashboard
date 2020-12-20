@@ -1,0 +1,44 @@
+.graph-chart {
+  padding: 10px 0;
+  box-sizing: border-box;
+
+  .graph{
+    width: 100%;
+    height: 92%;
+    margin-bottom: 2px;
+  }
+}
+
+.arrow-block {
+  width: 90%;
+  height: 8%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .arrow-block__title {
+    font-size: 12px;
+  }
+
+  .arrow-block__button {
+    border: 5px solid transparent;
+    background-color: transparent;
+  }
+
+  .arrow-block__button:focus {
+    outline: none;
+  }
+
+  .arrow-block__button:hover {
+    cursor: pointer;
+  }
+
+  .arrow-left {
+    border-right: 5px solid #bdbdbd;
+  }
+
+  .arrow-right {
+    border-left: 5px solid #bdbdbd;
+  }
+}

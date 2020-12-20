@@ -62,8 +62,16 @@ export class CovidDashboardService {
     this.currentSelect = dataToStore;
   }
 
+  static setIndex(index) {
+    this.index = index;
+  }
+
   static getCountry() {
     return this.currentSelect;
+  }
+
+  static getIndex() {
+    return this.index;
   }
 
   static getDataWorld() {
