@@ -1,6 +1,6 @@
 export const SUMMARY_URL = "https://api.covid19api.com/summary";
 export const WORLD_URL = "https://disease.sh/v3/covid-19/historical/all?lastdays=all";
-export const COUNTRY_URL = "https://api.covid19api.com/country/";
+export const COUNTRY_URL = "https://api.covid19api.com/total/country/";
 
 
 export const WORLD_POPULATION = 7827000000;
@@ -22,8 +22,8 @@ export const restcountries = [{
   "flag": "https://restcountries.eu/data/ala.svg",
   "name": "Åland Islands",
   "population": 28875,
-  "lat": 0,
-  "lon": 0
+  "lat": 60.1785247,
+  "lon": 19.91561
 }, {
   "flag": "https://restcountries.eu/data/alb.svg",
   "name": "Albania",
