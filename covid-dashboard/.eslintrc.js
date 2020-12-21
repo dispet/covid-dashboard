@@ -15,6 +15,8 @@ module.exports = {
         "import/no-cycle": "off",
         "prefer-destructuring": "off",
         "import/no-unresolved": "off",
+        "no-bitwise": "off",
+        "no-nested-ternary": "off"
     },
     settings: {
         "import/resolver": {
