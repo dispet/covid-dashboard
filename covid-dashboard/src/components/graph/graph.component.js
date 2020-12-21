@@ -33,7 +33,7 @@ export class Graph {
 
     const title = document.querySelector('.arrow-block__title')
 
-    const wordDate = [
+    const mainDate = [
       {
         title: 'Daily Cases',
         type: 'cases',
@@ -48,6 +48,21 @@ export class Graph {
       {
         title: 'Daily Recovered',
         type: 'recovered',
+        backgroundColor: '#27ae60'
+      },
+      {
+        title: 'Daily Cases per 100 000',
+        type: 'casesPerOneHundredThousand',
+        backgroundColor: '#27ae60'
+      },
+      {
+        title: 'Daily Deaths per 100 000',
+        type: 'deathsPerOneHundredThousand',
+        backgroundColor: '#27ae60'
+      },
+      {
+        title: 'Daily Recovered per 100 000',
+        type: 'recoveredPerOneHundredThousand',
         backgroundColor: '#27ae60'
       }
     ];
@@ -102,20 +117,20 @@ export class Graph {
     this.arrowBlock.addEventListener('click', (e) => {
       if (e.target.classList.contains('arrow-right')) {
         counter += 1;
-        if (counter > wordDate.length - 1) counter = 0;
+        if (counter > mainDate.length - 1) counter = 0;
 
-        title.textContent = `${obj} ${wordDate[counter].title}`;
-        const set = Object.values(externalData[wordDate[counter].type]);
-        const backgroundColor = wordDate[counter].backgroundColor;
+        title.textContent = `${obj} ${mainDate[counter].title}`;
+        const set = Object.values(externalData[mainDate[counter].type]);
+        const backgroundColor = mainDate[counter].backgroundColor;
         updateGraph(backgroundColor, set)
       }
       if (e.target.classList.contains('arrow-left')) {
         counter -= 1;
-        if (counter < 0) counter = wordDate.length - 1;
+        if (counter < 0) counter = mainDate.length - 1;
 
-        title.textContent = `${obj} ${wordDate[counter].title}`;
-        const set = Object.values(externalData[wordDate[counter].type]);
-        const backgroundColor = wordDate[counter].backgroundColor;
+        title.textContent = `${obj} ${mainDate[counter].title}`;
+        const set = Object.values(externalData[mainDate[counter].type]);
+        const backgroundColor = mainDate[counter].backgroundColor;
         updateGraph(backgroundColor, set)
       }
     });
@@ -132,15 +147,13 @@ export class Graph {
   }
 
   transformData(data) {
-    let obj = data[0].country;
+    const obj = data[0].country;
     let population = WORLD_POPULATION;
     const processedDate = {
       cases: {},
       deaths: {},
       recovered: {}
     }
-
-    console.log(data)
 
     let date = [];
     const cases = [];
@@ -153,23 +166,11 @@ export class Graph {
       }
     })
 
-    // TODO
-    const modeIndex = CovidDashboardService.getIndex();
-    console.log(modeIndex)
-
-    if (false) obj = `${obj} per 100 000`;
-
     data.forEach((item) => {
       date.push(item.date);
-      if (false) {
-        cases.push(Math.round(item.totalConfirmed * 100000 / population));
-        deaths.push(Math.round(item.totalDeaths * 100000 / population));
-        recovered.push(Math.round(item.totalRecovered * 100000 / population));
-      } else {
-        cases.push(item.totalConfirmed);
-        deaths.push(item.totalDeaths);
-        recovered.push(item.totalRecovered);
-      }
+      cases.push(item.totalConfirmed);
+      deaths.push(item.totalDeaths);
+      recovered.push(item.totalRecovered);
     });
 
     date = date.map((item) => item.substring(2, 10).replace(/-/g, '/'))
@@ -179,10 +180,32 @@ export class Graph {
       processedDate.recovered[key] = recovered[index];
     });
 
+    processedDate.casesPerOneHundredThousand = {};
+    processedDate.deathsPerOneHundredThousand = {};
+    processedDate.recoveredPerOneHundredThousand = {};
+
+    date.forEach((key, index) => {
+      processedDate.casesPerOneHundredThousand[key] = Math.floor(Object.values(processedDate.cases)[index] * 100000 / population);
+      processedDate.deathsPerOneHundredThousand[key] = Math.floor(Object.values(processedDate.deaths)[index] * 100000 / population);
+      processedDate.recoveredPerOneHundredThousand[key] = Math.floor(Object.values(processedDate.recovered)[index] * 100000 / population);
+    });
+
     this.loadGraph(processedDate, obj);
   }
 
   viewData(data) {
-    this.loadGraph(data);
+    const processedDate = data;
+
+    processedDate.casesPerOneHundredThousand = {};
+    processedDate.deathsPerOneHundredThousand = {};
+    processedDate.recoveredPerOneHundredThousand = {};
+
+    Object.keys(data.cases).forEach((key, index) => {
+      processedDate.casesPerOneHundredThousand[key] = Math.floor(Object.values(processedDate.cases)[index] * 100000 / WORLD_POPULATION);
+      processedDate.deathsPerOneHundredThousand[key] = Math.floor(Object.values(processedDate.deaths)[index] * 100000 / WORLD_POPULATION);
+      processedDate.recoveredPerOneHundredThousand[key] = Math.floor(Object.values(processedDate.recovered)[index] * 100000 / WORLD_POPULATION);
+    });
+
+    this.loadGraph(processedDate);
   }
 }
