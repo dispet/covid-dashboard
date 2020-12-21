@@ -51,37 +51,48 @@ export class Graph {
         backgroundColor: '#27ae60'
       }
     ];
-    const updateGraph = (background = '#f1c40f', set = dataSet) => {
+
+    const updateGraph = (background = "#f1c40f", set = dataSet) => {
       const data = {
         labels: lables,
-        datasets: [{
-          label: 'Daily Cases',
-          data: set,
-          backgroundColor: background,
-        }]
-      }
+        datasets: [
+          {
+            label: "Daily Cases",
+            data: set,
+            backgroundColor: background
+          }
+        ]
+      };
 
       const options = {
         legend: {
-          display: false,
+          display: false
         },
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true
+              }
             }
-          }]
+          ]
         }
+      };
+
+      if (!this.chart) {
+        this.chart = new Chart(this.ctx, {
+          type: "bar",
+          data,
+          options
+        });
       }
 
-      return new Chart(this.ctx, {
-        type: 'bar',
-        data,
-        options
-      });
-    }
+      this.chart.options = { ...options };
+      this.chart.data = { ...data };
+      this.chart.update();
+    };
 
     updateGraph();
 
@@ -161,7 +172,7 @@ export class Graph {
       }
     });
 
-    date = date.map((item) => item.substring(2, 10).replace(/-/g,'/'))
+    date = date.map((item) => item.substring(2, 10).replace(/-/g, '/'))
     date.forEach((key, index) => {
       processedDate.cases[key] = cases[index];
       processedDate.deaths[key] = deaths[index];
