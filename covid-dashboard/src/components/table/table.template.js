@@ -1,8 +1,8 @@
 function getViewTable(currentSelect, totalConfirmed, totalDeaths, totalRecovered) {
-    const tableView = `
+  const tableView = `
     <div class="table">
       <div class="table__header">${currentSelect}</div>
-      
+
       <div class="table__body" data-type="global">
         <div class="table__item">
           <div class="table__part">
@@ -42,7 +42,7 @@ function getViewTable(currentSelect, totalConfirmed, totalDeaths, totalRecovered
 }
 
 function bodyTableView(totalConfirmed, totalDeaths, totalRecovered) {
-    const bodyTable = `
+  const bodyTable = `
       <div class="table__item">
         <div class="table__part">
           <div class="table__part_header">
@@ -75,7 +75,7 @@ function bodyTableView(totalConfirmed, totalDeaths, totalRecovered) {
       </div>
 `;
 
-    return bodyTable;
+  return bodyTable;
 }
 
 export { getViewTable, bodyTableView };
