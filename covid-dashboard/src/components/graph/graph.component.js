@@ -23,12 +23,6 @@ export class Graph {
     this.arrowBlock.className = 'arrow-block';
     this.graphChart.append(this.arrowBlock);
 
-    // TODO
-    window.addEventListener('load', () => {
-      const perOneHundredThousand = document.querySelector('.tabs__header_item[data-tab="3"]');
-      console.log(perOneHundredThousand)
-    }, 0)
-
     const lables = Object.keys(externalData.cases);
     const dataSet = Object.values(externalData.cases);
 
@@ -135,6 +129,8 @@ export class Graph {
       recovered: {}
     }
 
+    console.log(data)
+
     let date = [];
     const cases = [];
     const deaths = [];
@@ -146,15 +142,15 @@ export class Graph {
       }
     })
 
-    if (true) obj = `${obj} per 100 000`;
-
     // TODO
     const modeIndex = CovidDashboardService.getIndex();
     console.log(modeIndex)
 
+    if (false) obj = `${obj} per 100 000`;
+
     data.forEach((item) => {
       date.push(item.date);
-      if (true) {
+      if (false) {
         cases.push(Math.round(item.totalConfirmed * 100000 / population));
         deaths.push(Math.round(item.totalDeaths * 100000 / population));
         recovered.push(Math.round(item.totalRecovered * 100000 / population));
@@ -165,7 +161,7 @@ export class Graph {
       }
     });
 
-    date = date.map((item) => item.substring(0, 10))
+    date = date.map((item) => item.substring(2, 10).replace(/-/g,'/'))
     date.forEach((key, index) => {
       processedDate.cases[key] = cases[index];
       processedDate.deaths[key] = deaths[index];
