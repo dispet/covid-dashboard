@@ -1,6 +1,6 @@
 import "./assets/styles/styles.scss";
-import { CountryList, Graph, Table, WordMap } from "./components/index";
-import { CovidDashboardService } from "./core/services";
+import {CountryList, Graph, Table, WordMap} from "./components/index";
+import {CovidDashboardService} from "./core/services";
 
 const countryList = new CountryList();
 const graph = new Graph();
