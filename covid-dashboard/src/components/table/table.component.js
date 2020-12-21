@@ -1,5 +1,4 @@
 import "./table.component.scss";
-
 import { perPeople } from "./utils";
 import { getViewTable, bodyTableView } from "./table.template";
 
