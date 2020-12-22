@@ -14,7 +14,6 @@ export class Graph {
     this.ctx = this.canvas.getContext("2d");
     this.counter = 0;
     this.arrowBlock.addEventListener('click', (e) => {
-      console.log('counter:', this.counter)
       if (e.target.classList.contains('arrow-right')) {
         this.counter += 1;
         if (this.counter > this.mainDate.length - 1) this.counter = 0;
