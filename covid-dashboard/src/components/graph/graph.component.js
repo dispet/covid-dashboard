@@ -54,17 +54,60 @@ export class Graph {
 
         const title = document.querySelector(".arrow-block__title");
 
-        const mainDate = [
-            {
-                title: "Daily Cases",
-                type: "cases",
-                backgroundColor: "#f1c40f"
-            },
-            {
-                title: "Daily Deaths",
-                type: "deaths",
-                backgroundColor: "#e74c3c"
-            },
+    const mainDate = [
+      {
+        title: 'Daily Cases',
+        type: 'cases',
+        backgroundColor: '#f1c40f'
+      }
+      ,
+      {
+        title: 'Daily Deaths',
+        type: 'deaths',
+        backgroundColor: '#e74c3c'
+      },
+      {
+        title: 'Daily Recovered',
+        type: 'recovered',
+        backgroundColor: '#27ae60'
+      },
+      {
+        title: 'Daily Cases per 100 000',
+        type: 'casesPerOneHundredThousand',
+        backgroundColor: '#27ae60'
+      },
+      {
+        title: 'Daily Deaths per 100 000',
+        type: 'deathsPerOneHundredThousand',
+        backgroundColor: '#27ae60'
+      },
+      {
+        title: 'Daily Recovered per 100 000',
+        type: 'recoveredPerOneHundredThousand',
+        backgroundColor: '#27ae60'
+      }
+    ];
+
+    const updateGraph = (background = "#f1c40f", set = dataSet) => {
+      const data = {
+        labels: lables,
+        datasets: [
+          {
+            label: "Daily Cases",
+            data: set,
+            backgroundColor: background
+          }
+        ]
+      };
+
+      const options = {
+        legend: {
+          display: false
+        },
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: {
+          yAxes: [
             {
                 title: "Daily Recovered",
                 type: "recovered",
