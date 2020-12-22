@@ -1,12 +1,7 @@
 /*************************************/
 .table-data {
-    background: #1b1b1b;
     font-size: 15px;
     border: none;
-}
-
-.world-map.fullwidth.active {
-    background: #cfc;
 }
 
 /*************************************/
@@ -25,6 +20,7 @@
         margin: 0 3px 10px;
         @media (max-width: 768px) {
             width: auto;
+            margin: 0 0 10px;
         }
     }
     .switchers__input {
@@ -84,8 +80,14 @@
         padding: 10px;
         text-transform: uppercase;
         font-weight: 600;
-        background: #3f3f3f;
+        background: #2c2c2d;
         margin: 3px 3px 10px 3px;
+        @media (max-width: 768px) {
+            margin: 5px 0 10px;
+            .header__heading {
+                padding: 20px 10px;
+            }
+        }
     }
     .table__body {
         display: flex;
@@ -112,77 +114,3 @@
 }
 
 /**************************************/
-body {
-    font-family: "Montserrat Alternates", sans-serif;
-}
-.header {
-    background: #2c2c2d;
-    padding: 20px 0;
-    text-align: center;
-    .header__heading {
-        font-size: 15px;
-        margin: 0;
-        color: #fff;
-        text-transform: uppercase;
-    }
-}
-
-.search {
-    border: 5px solid #2c2c2d;
-    margin-bottom: 10px;
-    padding: 10px 0 10px 10px;
-}
-
-.switcher {
-    background: #2c2c2d;
-    border: none;
-    .cause,
-    .cause1 {
-        color: #feb900;
-    }
-}
-
-.global-cases {
-    border: none;
-    background: #2c2c2d;
-    padding: 10px;
-    margin-bottom: 10px;
-    .global-cases__heading {
-        text-transform: uppercase;
-    }
-}
-
-.btn {
-    cursor: pointer;
-    transition: transform 0.3s;
-    width: 20px;
-    height: 20px;
-
-    &.btn-forward,
-    &.map-btn-forward {
-        transform: rotate(100grad);
-        &:hover {
-            transform: rotate(100grad) scale(1.2);
-        }
-    }
-    &.btn-back,
-    &.map-btn-back {
-        transform: rotate(-100grad);
-        &:hover {
-            transform: rotate(-100grad) scale(1.2);
-        }
-    }
-}
-
-.footer {
-    position: static;
-    background: #2c2c2d;
-    border: none;
-    a {
-        text-decoration: none;
-        transition: transform 0.3s;
-        &:hover {
-            transform: translateY(-2px);
-        }
-    }
-}
