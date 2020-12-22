@@ -62,6 +62,7 @@ export class WordMap {
       }
       CovidDashboardService.setIndex(this.sortItem);
       document.querySelector(".cause1").innerHTML = `<span class="cause1">${causesStr[this.sortItem]}</span>`;
+      this.countriesData = CovidDashboardService.getState();
       this.iconsLoad();
     });
   }
@@ -155,6 +156,7 @@ export class WordMap {
   }
 
   iconsLoad() {
+    // console.log('this.countriesData',this.countriesData)
     this.markerList.forEach((element) => mainMap.removeLayer(element));
     this.countriesData.forEach((element) => {
       const restcountry = restcountries.filter((item) => element.country === item.name)[0];
@@ -177,7 +179,7 @@ export class WordMap {
       return b[causes[this.sortItem]] - a[causes[this.sortItem]];
     });
     const max = Math.floor(this.countriesData[0][causes[this.sortItem]] / 10);
-    if(max < 10) return max + 1;
+    if(max < 10) return max + sumData;
     let iconSize = 0;
     for (let i = 0; i <= 10; i += 1) {
       iconSize = i + 1;

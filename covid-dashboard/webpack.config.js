@@ -68,10 +68,6 @@ module.exports = {
         {
           from: path.resolve(__dirname, "src/assets/img/arrow.svg"),
           to: path.resolve(__dirname, "dist/src/assets/img/")
-        },
-        {
-          from: path.resolve(__dirname, "src/assets/img/coronavirusMarker.webp"),
-          to: path.resolve(__dirname, "dist/src/assets/img/")
         }
       ]
     }),
@@ -102,7 +98,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(jpg|jpeg|svg|gif|png|ico|webp)$/,
+        test: /\.(jpg|jpeg|svg|gif|png|ico)$/,
         use: ["file-loader"]
       },
       {
