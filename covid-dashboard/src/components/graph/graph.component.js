@@ -142,7 +142,7 @@ export class Graph {
           display: false
         },
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         scales: {
           yAxes: [
             {

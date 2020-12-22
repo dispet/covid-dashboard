@@ -38,7 +38,7 @@ function getViewTable(currentSelect, totalConfirmed, totalDeaths, totalRecovered
   </div>
   `;
 
-  return tableView;
+    return tableView;
 }
 
 function bodyTableView(totalConfirmed, totalDeaths, totalRecovered) {
