@@ -13,9 +13,32 @@ export class Graph {
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext("2d");
     this.counter = 0;
+    this.arrowBlock.addEventListener('click', (e) => {
+      console.log('counter:', this.counter)
+      if (e.target.classList.contains('arrow-right')) {
+        this.counter += 1;
+        if (this.counter > this.mainDate.length - 1) this.counter = 0;
+
+        this.title.textContent = `${this.obj} ${this.mainDate[this.counter].title}`;
+        const set = Object.values(this.externalData[this.mainDate[this.counter].type]);
+        const backgroundColor = this.mainDate[this.counter].backgroundColor;
+        this.updateGraph(backgroundColor, set)
+      }
+      if (e.target.classList.contains('arrow-left')) {
+        this.counter -= 1;
+        if (this.counter < 0) this.counter = this.mainDate.length - 1;
+
+        this.title.textContent = `${this.obj} ${this.mainDate[this.counter].title}`;
+        const set = Object.values(this.externalData[this.mainDate[this.counter].type]);
+        const backgroundColor = this.mainDate[this.counter].backgroundColor;
+        this.updateGraph(backgroundColor, set)
+      }
+    });
   }
 
-  loadGraph(externalData, obj = 'World') {
+  loadGraph(externalData, obj) {
+    this.obj = obj
+    this.externalData = externalData;
     this.graphBlock.className = 'graph-block';
     this.canvas.className = 'graph';
     this.graphChart.append(this.graphBlock);
@@ -29,9 +52,9 @@ export class Graph {
     <div class="arrow-block__title"></div>
     <button class="arrow-block__button arrow-right"></button>`;
 
-    const title = document.querySelector('.arrow-block__title')
+    this.title = document.querySelector('.arrow-block__title')
 
-    const mainDate = [
+    this.mainDate = [
       {
         title: 'Daily Cases',
         type: 'cases',
@@ -97,12 +120,12 @@ export class Graph {
       }
     ];
 
-    const lables = Object.keys(externalData[mainDate[this.counter].type]);
-    const dataSet = Object.values(externalData[mainDate[this.counter].type]);
-    const background = mainDate[this.counter].backgroundColor;
-    title.textContent = `${obj} ${mainDate[this.counter].title}`;
+    const lables = Object.keys(externalData[this.mainDate[this.counter].type]);
+    const dataSet = Object.values(externalData[this.mainDate[this.counter].type]);
+    const background = this.mainDate[this.counter].backgroundColor;
+    this.title.textContent = `${obj} ${this.mainDate[this.counter].title}`;
 
-    const updateGraph = (color = background, set = dataSet) => {
+    this.updateGraph = (color = background, set = dataSet) => {
       const data = {
         labels: lables,
         datasets: [
@@ -144,29 +167,7 @@ export class Graph {
       this.chart.update();
     };
 
-    updateGraph();
-
-    this.arrowBlock.addEventListener('click', (e) => {
-      if (e.target.classList.contains('arrow-right')) {
-        console.log('counter', this.counter);
-        this.counter += 1;
-        if (this.counter > mainDate.length - 1) this.counter = 0;
-
-        title.textContent = `${obj} ${mainDate[this.counter].title}`;
-        const set = Object.values(externalData[mainDate[this.counter].type]);
-        const backgroundColor = mainDate[this.counter].backgroundColor;
-        updateGraph(backgroundColor, set)
-      }
-      if (e.target.classList.contains('arrow-left')) {
-        this.counter -= 1;
-        if (this.counter < 0) this.counter = mainDate.length - 1;
-
-        title.textContent = `${obj} ${mainDate[this.counter].title}`;
-        const set = Object.values(externalData[mainDate[this.counter].type]);
-        const backgroundColor = mainDate[this.counter].backgroundColor;
-        updateGraph(backgroundColor, set)
-      }
-    });
+    this.updateGraph();
 
   };
 
@@ -180,7 +181,7 @@ export class Graph {
   }
 
   transformData(data) {
-    const obj = data[0].country;
+    // const obj = data[0].country;
     let population = WORLD_POPULATION;
     const processedDate = {
       cases: {},
@@ -194,7 +195,7 @@ export class Graph {
     const recovered = [];
 
     restcountries.forEach((country) => {
-      if (country.name === obj) {
+      if (country.name === data[0].country) {
         population = country.population;
       }
     })
@@ -223,7 +224,7 @@ export class Graph {
       processedDate.recoveredPerOneHundredThousand[key] = Math.floor(Object.values(processedDate.recovered)[index] * 100000 / population);
     });
 
-    this.loadGraph(processedDate, obj);
+    this.loadGraph(processedDate, data[0].country);
   }
 
   viewData(data) {
@@ -239,6 +240,6 @@ export class Graph {
       processedDate.recoveredPerOneHundredThousand[key] = Math.floor(Object.values(processedDate.recovered)[index] * 100000 / WORLD_POPULATION);
     });
 
-    this.loadGraph(processedDate);
+    this.loadGraph(processedDate, 'World');
   }
 }
