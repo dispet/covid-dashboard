@@ -4,6 +4,7 @@ import { CovidDashboardService, WORLD_POPULATION, restcountries } from "../../co
 // import { doc } from 'prettier';
 
 Chart.defaults.global.defaultFontColor = '#bdbdbd';
+let counter = 0;
 
 export class Graph {
   constructor() {
@@ -22,9 +23,6 @@ export class Graph {
 
     this.arrowBlock.className = 'arrow-block';
     this.graphChart.append(this.arrowBlock);
-
-    const lables = Object.keys(externalData.cases);
-    const dataSet = Object.values(externalData.cases);
 
     this.arrowBlock.innerHTML =
       `<button class="arrow-block__button arrow-left"></button>
@@ -53,12 +51,12 @@ export class Graph {
       {
         title: 'Daily Cases per 100 000',
         type: 'casesPerOneHundredThousand',
-        backgroundColor: '#27ae60'
+        backgroundColor: '#f1c40f'
       },
       {
         title: 'Daily Deaths per 100 000',
         type: 'deathsPerOneHundredThousand',
-        backgroundColor: '#27ae60'
+        backgroundColor: '#e74c3c'
       },
       {
         title: 'Daily Recovered per 100 000',
@@ -67,14 +65,19 @@ export class Graph {
       }
     ];
 
-    const updateGraph = (background = "#f1c40f", set = dataSet) => {
+    const lables = Object.keys(externalData[mainDate[counter].type]);
+    const dataSet = Object.values(externalData[mainDate[counter].type]);
+    const background = mainDate[counter].backgroundColor;
+    title.textContent = `${obj} ${mainDate[counter].title}`;
+
+    const updateGraph = (color = background, set = dataSet) => {
       const data = {
         labels: lables,
         datasets: [
           {
             label: "Daily Cases",
             data: set,
-            backgroundColor: background
+            backgroundColor: color
           }
         ]
       };
@@ -111,11 +114,9 @@ export class Graph {
 
     updateGraph();
 
-    let counter = 0
-    title.textContent = `${obj} Daily Cases`;
-
     this.arrowBlock.addEventListener('click', (e) => {
       if (e.target.classList.contains('arrow-right')) {
+        console.log(counter);
         counter += 1;
         if (counter > mainDate.length - 1) counter = 0;
 
