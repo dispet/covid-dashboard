@@ -49,21 +49,6 @@ export class Graph {
         backgroundColor: '#27ae60'
       },
       {
-        title: 'Daily Cases per 100 000',
-        type: 'casesPerOneHundredThousand',
-        backgroundColor: '#f1c40f'
-      },
-      {
-        title: 'Daily Deaths per 100 000',
-        type: 'deathsPerOneHundredThousand',
-        backgroundColor: '#e74c3c'
-      },
-      {
-        title: 'Daily Recovered per 100 000',
-        type: 'recoveredPerOneHundredThousand',
-        backgroundColor: '#27ae60'
-      },
-      {
         title: 'Daily Cases',
         type: 'cases',
         backgroundColor: '#f1c40f'
@@ -79,6 +64,22 @@ export class Graph {
         type: 'recovered',
         backgroundColor: '#27ae60'
       },
+      {
+        title: 'Daily Cases per 100 000',
+        type: 'casesPerOneHundredThousand',
+        backgroundColor: '#f1c40f'
+      },
+      {
+        title: 'Daily Deaths per 100 000',
+        type: 'deathsPerOneHundredThousand',
+        backgroundColor: '#e74c3c'
+      },
+      {
+        title: 'Daily Recovered per 100 000',
+        type: 'recoveredPerOneHundredThousand',
+        backgroundColor: '#27ae60'
+      },
+
       {
         title: 'Daily Cases per 100 000',
         type: 'casesPerOneHundredThousand',
