@@ -6,27 +6,49 @@ import { CovidDashboardService, WORLD_POPULATION, restcountries } from "../../co
 Chart.defaults.global.defaultFontColor = "#bdbdbd";
 
 export class Graph {
-    constructor() {
-        this.graphChart = document.querySelector(".graph-chart");
-        this.graphBlock = document.createElement("div");
-        this.arrowBlock = document.createElement("div");
-        this.canvas = document.createElement("canvas");
-        this.ctx = this.canvas.getContext("2d");
-    }
+  constructor() {
+    this.graphChart = document.querySelector('.graph-chart');
+    this.graphBlock = document.createElement('div')
+    this.arrowBlock = document.createElement('div');
+    this.canvas = document.createElement('canvas');
+    this.ctx = this.canvas.getContext("2d");
+    this.counter = 0;
+    this.arrowBlock.addEventListener('click', (e) => {
 
-    loadGraph(externalData, obj = "World") {
-        this.graphBlock.className = "graph-block";
-        this.canvas.className = "graph";
-        this.graphChart.append(this.graphBlock);
-        this.graphBlock.append(this.canvas);
+      if (e.target.classList.contains('arrow-right')) {
+        this.counter += 1;
+        if (this.counter > this.mainDate.length - 1) this.counter = 0;
 
-        this.arrowBlock.className = "arrow-block";
-        this.graphChart.append(this.arrowBlock);
+        this.title.textContent = `${this.obj} ${this.mainDate[this.counter].title}`;
+        const set = Object.values(this.externalData[this.mainDate[this.counter].type]);
+        const backgroundColor = this.mainDate[this.counter].backgroundColor;
+        this.updateGraph(backgroundColor, set)
+      }
+      if (e.target.classList.contains('arrow-left')) {
+        this.counter -= 1;
+        if (this.counter < 0) this.counter = this.mainDate.length - 1;
 
-        const lables = Object.keys(externalData.cases);
-        const dataSet = Object.values(externalData.cases);
+        this.title.textContent = `${this.obj} ${this.mainDate[this.counter].title}`;
+        const set = Object.values(this.externalData[this.mainDate[this.counter].type]);
+        const backgroundColor = this.mainDate[this.counter].backgroundColor;
+        this.updateGraph(backgroundColor, set)
+      }
+    });
+  }
 
-        this.arrowBlock.innerHTML = `<button class="arrow-block__button arrow-left"></button>
+  loadGraph(externalData, obj) {
+    this.obj = obj
+    this.externalData = externalData;
+    this.graphBlock.className = 'graph-block';
+    this.canvas.className = 'graph';
+    this.graphChart.append(this.graphBlock);
+    this.graphBlock.append(this.canvas);
+
+    this.arrowBlock.className = 'arrow-block';
+    this.graphChart.append(this.arrowBlock);
+
+    this.arrowBlock.innerHTML =
+      `<button class="arrow-block__button arrow-left"></button>
     <div class="arrow-block__title"></div>
     <button class="arrow-block__button arrow-right"></button>`;
 
