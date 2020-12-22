@@ -147,7 +147,7 @@ export class Graph {
 
     this.arrowBlock.addEventListener('click', (e) => {
       if (e.target.classList.contains('arrow-right')) {
-        console.log('counter:', this.counter);
+        console.log('counter', this.counter);
         this.counter += 1;
         if (this.counter > mainDate.length - 1) this.counter = 0;
 
