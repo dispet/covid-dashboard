@@ -2,7 +2,7 @@
 @import "roboto.scss";
 
 html {
-    // font-family: "Roboto", sans-serif;
+
     font-size: 10px;
     margin: 0;
     padding: 0;
@@ -16,6 +16,7 @@ body {
 }
 
 main {
+
     display: flex;
     margin: 0;
     padding: 0;
@@ -114,6 +115,7 @@ main {
 }
 
 .covid-title {
+
     height: 4vh;
     width: 98vw;
     border: 1px solid #ddd;
@@ -124,6 +126,7 @@ main {
 }
 
 .all-functional {
+
     display: flex;
     width: 98vw;
     height: 88vh;
@@ -138,6 +141,7 @@ main {
 }
 
 input {
+
     border: 1px solid #ddd;
     outline: none;
     font-size: 1.5rem;
@@ -148,6 +152,7 @@ input {
 }
 
 .country-list-and-search {
+
     display: flex;
     width: 22vw;
     height: 86vh;
@@ -160,6 +165,7 @@ input {
 }
 
 .global-cases {
+
     box-sizing: border-box;
     font-size: 1.5rem;
     display: flex;
@@ -172,11 +178,14 @@ input {
 }
 
 .global-cases__count {
+
     font-size: 2.3rem;
     color: rgb(255, 0, 0);
 }
 
+
 .switcher {
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -186,6 +195,7 @@ input {
 }
 
 .country-list {
+
     display: flex;
     height: 70vh;
     box-sizing: border-box;
@@ -213,24 +223,30 @@ input {
     }
 }
 
+
 .country-list > li::marker {
+
     content: "";
 }
 
 .country--select {
+
     background-color: rgb(65, 194, 245);
 }
 
 .country-item__flag {
+
     width: 20px;
     height: 15px;
 }
 
 .country-item__cases {
+
     color: rgb(255, 0, 0);
 }
 
 .map-and-other-stuff {
+
     display: flex;
     width: 75vw;
     height: 88vh;
@@ -245,6 +261,7 @@ input {
         }
     }
 }
+
 .world-map-and-switcher {
     display: flex;
     width: 100%;
@@ -256,11 +273,13 @@ input {
     }
 }
 .world-map {
+ 
     width: 100%;
     height: 91%;
 }
 
 .table-and-graph {
+ 
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -270,6 +289,7 @@ input {
 }
 
 .table-data {
+ 
     display: flex;
     height: 100%;
     width: 49%;
@@ -281,35 +301,43 @@ input {
 }
 
 .table-data > span {
+
     display: flex;
     justify-content: space-between;
 }
 
 .confirmed {
+
     color: rgb(235, 238, 241);
 }
 
 .new-confirmed {
+
     color: rgb(252, 250, 250);
 }
 
 .deaths {
+
     color: rgb(190, 0, 0);
 }
 
 .new-deaths {
+
     color: rgb(255, 0, 0);
 }
 
 .recovered {
+
     color: rgb(0, 124, 0);
 }
 
 .new-recovered {
+
     color: rgb(0, 170, 0);
 }
 
 .graph-chart {
+
     width: 49%;
     margin-bottom: 10px;
     @media (max-width: 768px) {
@@ -317,7 +345,9 @@ input {
     }
 }
 
+
 footer p {
+
     margin: 0;
     display: flex;
     align-content: center;
@@ -328,16 +358,19 @@ footer p {
 }
 
 a {
+
     color: #bdbdbd;
 }
 
 @media (max-width: 1024px) {
+
     .covid-title {
         font-size: 1.8rem;
     }
     .country-list > li {
         font-size: 1.1rem;
     }
+
 
     input {
         font-size: 1.1rem;
@@ -348,6 +381,7 @@ a {
 }
 
 @media (max-width: 768px) {
+
     .covid-title {
         font-size: 1.7rem;
     }
@@ -363,6 +397,7 @@ a {
 }
 
 @media (max-width: 650px) {
+
     .covid-title {
         font-size: 1.6rem;
     }
@@ -378,6 +413,7 @@ a {
 }
 
 @media (max-width: 500px) {
+
     .covid-title {
         font-size: 1.5rem;
     }
@@ -394,6 +430,7 @@ a {
 
 /* Popup container */
 .popup {
+
     position: relative;
     display: inline-block;
     cursor: pointer;
@@ -401,6 +438,7 @@ a {
 
 /* The actual popup (appears on top) */
 .popup .popuptext {
+
     visibility: hidden;
     width: 160px;
     background-color: #555;
@@ -417,6 +455,7 @@ a {
 
 /* Popup arrow */
 .popup .popuptext::after {
+
     content: "";
     position: absolute;
     top: 100%;
@@ -429,6 +468,7 @@ a {
 
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .popup .show {
+
     visibility: visible;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s;
@@ -436,6 +476,7 @@ a {
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
+
     from {
         opacity: 0;
     }
@@ -445,6 +486,7 @@ a {
 }
 
 @keyframes fadeIn {
+
     from {
         opacity: 0;
     }
@@ -455,6 +497,7 @@ a {
 /*************************************/
 
 .fullwidth {
+
     position: relative;
     &:hover .fullwidth__switcher {
         transform: scale(1) rotate(135deg);
