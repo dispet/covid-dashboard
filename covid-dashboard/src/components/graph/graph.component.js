@@ -4,7 +4,6 @@ import { CovidDashboardService, WORLD_POPULATION, restcountries } from "../../co
 // import { doc } from 'prettier';
 
 Chart.defaults.global.defaultFontColor = '#bdbdbd';
-let counter = 0;
 
 export class Graph {
   constructor() {
@@ -13,6 +12,7 @@ export class Graph {
     this.arrowBlock = document.createElement('div');
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext("2d");
+    this.counter = 0;
   }
 
   loadGraph(externalData, obj = 'World') {
@@ -65,10 +65,10 @@ export class Graph {
       }
     ];
 
-    const lables = Object.keys(externalData[mainDate[counter].type]);
-    const dataSet = Object.values(externalData[mainDate[counter].type]);
-    const background = mainDate[counter].backgroundColor;
-    title.textContent = `${obj} ${mainDate[counter].title}`;
+    const lables = Object.keys(externalData[mainDate[this.counter].type]);
+    const dataSet = Object.values(externalData[mainDate[this.counter].type]);
+    const background = mainDate[this.counter].backgroundColor;
+    title.textContent = `${obj} ${mainDate[this.counter].title}`;
 
     const updateGraph = (color = background, set = dataSet) => {
       const data = {
@@ -116,22 +116,22 @@ export class Graph {
 
     this.arrowBlock.addEventListener('click', (e) => {
       if (e.target.classList.contains('arrow-right')) {
-        console.log(counter);
-        counter += 1;
-        if (counter > mainDate.length - 1) counter = 0;
+        console.log('counter:', this.counter);
+        this.counter += 1;
+        if (this.counter > mainDate.length - 1) this.counter = 0;
 
-        title.textContent = `${obj} ${mainDate[counter].title}`;
-        const set = Object.values(externalData[mainDate[counter].type]);
-        const backgroundColor = mainDate[counter].backgroundColor;
+        title.textContent = `${obj} ${mainDate[this.counter].title}`;
+        const set = Object.values(externalData[mainDate[this.counter].type]);
+        const backgroundColor = mainDate[this.counter].backgroundColor;
         updateGraph(backgroundColor, set)
       }
       if (e.target.classList.contains('arrow-left')) {
-        counter -= 1;
-        if (counter < 0) counter = mainDate.length - 1;
+        this.counter -= 1;
+        if (this.counter < 0) this.counter = mainDate.length - 1;
 
-        title.textContent = `${obj} ${mainDate[counter].title}`;
-        const set = Object.values(externalData[mainDate[counter].type]);
-        const backgroundColor = mainDate[counter].backgroundColor;
+        title.textContent = `${obj} ${mainDate[this.counter].title}`;
+        const set = Object.values(externalData[mainDate[this.counter].type]);
+        const backgroundColor = mainDate[this.counter].backgroundColor;
         updateGraph(backgroundColor, set)
       }
     });
