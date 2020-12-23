@@ -187,6 +187,7 @@ function fullWidth() {
     document.addEventListener("click", (e) => {
       if (e.target.classList.contains("fullwidth__switcher")) {
         e.target.closest(".fullwidth").classList.toggle("active");
+        graph.chart.resize();
       }
     });
   }
