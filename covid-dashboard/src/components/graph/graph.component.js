@@ -176,7 +176,6 @@ export class Graph {
     }
 
     transformData(data) {
-        // const obj = data[0].country;
         let population = WORLD_POPULATION;
         const processedDate = {
             cases: {},
@@ -224,7 +223,7 @@ export class Graph {
                 (Object.values(processedDate.recovered)[index] * 100000) / population
             );
         });
-
+        
         this.loadGraph(processedDate, data[0].country);
     }
 
