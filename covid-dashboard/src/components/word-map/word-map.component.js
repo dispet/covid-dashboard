@@ -43,7 +43,7 @@ const geojson = L.geoJson(AREA_COUNTRIES, {
 const legend = L.control({position: "bottomleft"});
 
 
-legend.onAdd = function () {
+legend.onAdd = function f1() {
   const div = L.DomUtil.create("div", "legend");
   div.innerHTML += "<h4>Legend</h4>";
   div.innerHTML += '<i style="background: #ff0000"></i><span>Death</span><br>';
@@ -108,7 +108,7 @@ export class WordMap {
 
 
     mainMap.setMaxBounds(bounds);
-    mainMap.on("drag", function () {
+    mainMap.on("drag", function f2() {
       mainMap.panInsideBounds(bounds, {animate: false});
     });
     mainMap.setView([53.89, 27.55], 4);
@@ -181,6 +181,7 @@ export class WordMap {
 
 
   iconsLoad() {
+    if (!this.countriesData) return;
     this.markerList.forEach((element) => mainMap.removeLayer(element));
     this.countriesData.forEach((element) => {
       const restcountry = restcountries.filter((item) => element.country === item.name)[0];
