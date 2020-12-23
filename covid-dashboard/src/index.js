@@ -196,3 +196,7 @@ function fullWidth() {
 }
 
 fullWidth();
+
+window.addEventListener("resize", () => {
+  graph.chart.resize();
+});

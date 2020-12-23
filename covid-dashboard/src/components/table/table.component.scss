@@ -64,6 +64,12 @@
     }
 }
 
+.switchers .switchers__input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
 .table-wrapper {
     @media (max-width: 768px) {
         overflow-y: auto;
