@@ -3,6 +3,7 @@ import "./graph.component.scss";
 import { CovidDashboardService, WORLD_POPULATION, restcountries } from "../../core/index";
 // import { doc } from 'prettier';
 
+
 Chart.defaults.global.defaultFontColor = "#bdbdbd";
 
 export class Graph {
@@ -138,7 +139,7 @@ export class Graph {
                     display: false
                 },
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: true,
                 scales: {
                     yAxes: [
                         {
