@@ -1,5 +1,4 @@
 import "./table.component.scss";
-
 import { perPeople } from "./utils";
 import { getViewTable, bodyTableView } from "./table.template";
 
@@ -106,18 +105,18 @@ export class Table {
     this.changeTableView(radios);
   }
 
-  init() {
-    CovidDashboardService.getGlobal().then((data) => this.viewData(data));
-  }
+    init() {
+        CovidDashboardService.getGlobal().then((data) => this.viewData(data));
+    }
 
-  update(currentSelect) {
-    this.countriesData = CovidDashboardService.getState().filter((item) => item.code === currentSelect)[0];
-    this.currentSelect = this.countriesData.country;
-    this.loadTable();
-  }
+    update(currentSelect) {
+        this.countriesData = CovidDashboardService.getState().filter((item) => item.code === currentSelect)[0];
+        this.currentSelect = this.countriesData.country;
+        this.loadTable();
+    }
 
-  viewData(data) {
-    this.countriesData = data;
-    this.loadTable();
-  }
+    viewData(data) {
+        this.countriesData = data;
+        this.loadTable();
+    }
 }
