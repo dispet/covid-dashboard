@@ -52,6 +52,7 @@ export class Graph {
     <div class="arrow-block__title"></div>
     <button class="arrow-block__button arrow-right"></button>`;
 
+
     this.title = document.querySelector('.arrow-block__title')
 
     this.mainDate = [
@@ -147,7 +148,7 @@ export class Graph {
           yAxes: [
             {
               ticks: {
-                beginAtZero: true
+                beginAtZero: true,
               }
             }
           ]
@@ -165,10 +166,10 @@ export class Graph {
       this.chart.options = { ...options };
       this.chart.data = { ...data };
       this.chart.update();
+
     };
 
     this.updateGraph();
-
   };
 
   init() {
@@ -181,7 +182,6 @@ export class Graph {
   }
 
   transformData(data) {
-    // const obj = data[0].country;
     let population = WORLD_POPULATION;
     const processedDate = {
       cases: {},
