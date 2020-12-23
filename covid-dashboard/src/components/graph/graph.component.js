@@ -161,7 +161,14 @@ export class Graph {
             this.chart.options = { ...options };
             this.chart.data = { ...data };
             this.chart.update();
+            this.chart.canvas.style.maxWidth = "100%";
         };
+        document.querySelector(".graph-chart .fullwidth__switcher").addEventListener("click", () => {
+            this.chart.canvas.parentNode.style.height = "100%";
+            this.chart.canvas.parentNode.style.width = "100%";
+            this.chart.canvas.style.height = "100%";
+            this.chart.canvas.style.width = "100%";
+        });
 
         this.updateGraph();
     }
