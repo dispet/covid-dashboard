@@ -160,6 +160,7 @@ export class Graph {
             this.chart.options = { ...options };
             this.chart.data = { ...data };
             this.chart.update();
+            this.chart.canvas.style.maxWidth = "100%";
         };
 
         this.updateGraph();
