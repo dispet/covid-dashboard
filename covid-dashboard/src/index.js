@@ -38,7 +38,7 @@ document.querySelector('.country-list-and-search').addEventListener('click', (e)
     graph.arrowBlock.getElementsByClassName('arrow-left')[0].click();
     document.getElementsByClassName('map-btn-back')[0].click();
     radiosClick();
-  } else if (e.target !== e.currentTarget) {
+  } else if (!!e.target.closest('li') && e.target !== e.currentTarget) {
     const countryCode = e.target.closest('li').getAttribute('data-country');
     CovidDashboardService.setCountry(countryCode);
     countryList.sortByDescend();
@@ -176,6 +176,7 @@ function fullWidth() {
     document.addEventListener("click", (e) => {
       if (e.target.classList.contains("fullwidth__switcher")) {
         e.target.closest(".fullwidth").classList.toggle("active");
+        graph.chart.resize();
       }
     });
   }
@@ -184,3 +185,7 @@ function fullWidth() {
 }
 
 fullWidth();
+
+window.addEventListener("resize", () => {
+  graph.chart.resize();
+});

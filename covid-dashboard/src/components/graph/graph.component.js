@@ -1,7 +1,6 @@
 import Chart from "chart.js";
 import "./graph.component.scss";
 import { CovidDashboardService, WORLD_POPULATION, restcountries } from "../../core/index";
-// import { doc } from 'prettier';
 
 Chart.defaults.global.defaultFontColor = "#bdbdbd";
 
@@ -183,7 +182,6 @@ export class Graph {
     }
 
     transformData(data) {
-        // const obj = data[0].country;
         let population = WORLD_POPULATION;
         const processedDate = {
             cases: {},

@@ -33,6 +33,7 @@ main {
 .switcher {
     background: #2c2c2d;
     border: none;
+
     .cause,
     .cause1 {
         color: #feb900;
@@ -44,6 +45,7 @@ main {
     background: #2c2c2d;
     padding: 10px;
     margin-bottom: 10px;
+
     .global-cases__heading {
         text-transform: uppercase;
     }
@@ -58,13 +60,16 @@ main {
     &.btn-forward,
     &.map-btn-forward {
         transform: rotate(100grad);
+
         &:hover {
             transform: rotate(100grad) scale(1.2);
         }
     }
+
     &.btn-back,
     &.map-btn-back {
         transform: rotate(-100grad);
+
         &:hover {
             transform: rotate(-100grad) scale(1.2);
         }
@@ -75,9 +80,11 @@ main {
     position: static;
     background: #2c2c2d;
     border: none;
+
     a {
         text-decoration: none;
         transition: transform 0.3s;
+
         &:hover {
             transform: translateY(-2px);
         }
@@ -88,6 +95,7 @@ main {
     background: #2c2c2d;
     padding: 20px 0;
     text-align: center;
+
     .header__heading {
         font-size: 15px;
         margin: 0;
@@ -165,6 +173,7 @@ input {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+
     .global-cases__heading {
         font-weight: 600;
     }
@@ -197,6 +206,7 @@ input {
     @media (max-width: 768px) {
         max-height: 100px;
     }
+
     li {
         display: flex;
         justify-content: space-between;
@@ -205,6 +215,7 @@ input {
         cursor: pointer;
         background: #2c2c2d;
         margin: 2px 0;
+
         &:hover {
             color: #feb900;
             background: #3f3f3f;
@@ -212,12 +223,12 @@ input {
     }
 }
 
-.country-list > li::marker {
-    content: "";
+.country-list li.country--select {
+    background: #1b1b1b;
 }
 
-.country--select {
-    background-color: rgb(65, 194, 245);
+.country-list > li::marker {
+    content: "";
 }
 
 .country-item__flag {
@@ -255,6 +266,7 @@ input {
         min-height: 300px;
     }
 }
+
 .world-map {
     width: 100%;
     height: 91%;
@@ -452,13 +464,16 @@ a {
         opacity: 1;
     }
 }
+
 /*************************************/
 
 .fullwidth {
     position: relative;
+
     &:hover .fullwidth__switcher {
         transform: scale(1) rotate(135deg);
     }
+
     .fullwidth__switcher {
         transform: scale(0) rotate(45deg);
         position: absolute;
@@ -478,17 +493,18 @@ a {
         box-shadow: 0 0 5px #fff;
         z-index: 100000;
     }
+
     &.active {
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
-        //background-color: rgba(0,0,0,1);
         background: #414040;
         z-index: 1000000;
     }
 }
+
 /*************************************/
 .leaflet-bar a,
 .leaflet-bar a:hover {
@@ -502,11 +518,14 @@ a {
     text-decoration: none;
     color: black;
 }
+
 .leaflet-container {
     background: #3a3939;
     box-shadow: inset 0 0 0 2px #999999;
 }
+
 .leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
     margin-bottom: 10px;
 }
+
 /*************************************/

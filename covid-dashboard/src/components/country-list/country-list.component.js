@@ -60,11 +60,10 @@ export class CountryList {
 
   init() {
     CovidDashboardService.getCountries().then((data) => this.viewData(data));
-    CovidDashboardService.getGlobal().then((data1) => this.viewData1(data1));
+    CovidDashboardService.getGlobal().then((data) => this.viewGlobalData(data));
   }
 
   viewData(data) {
-    if (!data) return;
     CovidDashboardService.setIndex(this.sortItem);
     this.countriesData = data;
     for (let i = 0; i < this.countriesData.length; i += 1) {
@@ -82,8 +81,7 @@ export class CountryList {
     this.sortByDescend();
   }
 
-  viewData1(data1) {
-    if (!data1) return;
-    document.querySelector('.global-cases__count').innerHTML = `<span class="global-cases__count">${data1.totalConfirmed}</span>`;
+  viewGlobalData(data) {
+    document.querySelector('.global-cases__count').innerHTML = `<span class="global-cases__count">${data.totalConfirmed}</span>`;
   }
 }
