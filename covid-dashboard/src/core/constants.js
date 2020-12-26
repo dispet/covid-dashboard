@@ -3,11 +3,6 @@ export const WORLD_URL = "https://disease.sh/v3/covid-19/historical/all?lastdays
 export const COUNTRY_URL = "https://api.covid19api.com/total/country/";
 
 export const WORLD_POPULATION = 7827000000;
-export const PART_PEOPLES = 100000;
-export const GLOBAL_NUMBER = "globalglobalnumber";
-export const LASTDAY_GLOBAL_NUMBER = "lastdayglobalnumber";
-export const GLOBAL_PEOPLE_PER_NUMBER = "globalpeoplepernumber";
-export const LASTDAY_PEOPLE_PER_NUMBER = "lastdaypeoplepernumber";
 
 export const causes = [
     "totalConfirmed",
