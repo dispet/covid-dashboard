@@ -158,15 +158,10 @@ document.addEventListener("click", (e) => {
   }
 });
 
-function allIntit() {
-  countryList.init();
-  graph.init();
-  table.init();
-  wordMap.init();
-  setTimeout(allIntit, 7200000);
-}
-
-allIntit();
+countryList.init();
+graph.init();
+table.init();
+wordMap.init();
 
 function fullWidth() {
 
@@ -196,3 +191,7 @@ function fullWidth() {
 }
 
 fullWidth();
+
+window.addEventListener("resize", () => {
+  graph.chart.resize();
+});
