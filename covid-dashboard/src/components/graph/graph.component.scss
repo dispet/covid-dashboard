@@ -1,0 +1,54 @@
+.fullwidth.active {
+    .graph-block {
+        height: 100%;
+    }
+}
+
+.graph-chart {
+    padding: 10px 0;
+    box-sizing: border-box;
+
+    .graph-block {
+        width: 100%;
+        margin-bottom: 10px;
+        background: #1b1b1b;
+        padding: 5px;
+        box-sizing: border-box;
+        max-height: 100%;
+    }
+}
+
+.arrow-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    background: #2c2c2d;
+    width: 100%;
+
+    .arrow-block__title {
+        font-size: 15px;
+        color: #feb900;
+    }
+
+    .arrow-block__button {
+        border: 5px solid transparent;
+        background-color: transparent;
+    }
+
+    .arrow-block__button:focus {
+        outline: none;
+    }
+
+    .arrow-block__button:hover {
+        cursor: pointer;
+    }
+
+    .arrow-left {
+        border-right: 5px solid #feb900;
+    }
+
+    .arrow-right {
+        border-left: 5px solid #feb900;
+    }
+}
